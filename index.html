@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<!-- ViewPort -->
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<!-- FA -->
+    <script src="https://kit.fontawesome.com/34c020cde1.js" crossorigin="anonymous"></script>
+
+	<style type="text/css">
+
+		*::selection {
+		  background: #e3e3e3; /* WebKit/Blink Browsers */
+		}
+		*::-moz-selection {
+		  background: #e3e3e3; /* Gecko Browsers */
+		}
+
+		@font-face {
+		  font-family: Mentimun;
+		  src: url(fonts/Mentimun.ttf);
+		}
+
+		.wiltona{
+			font-family: Mentimun;
+		}
+
+		.wrapper{
+			background-color: grey;
+			position:fixed;
+			width: 100%;
+			top:50%;
+			left: 50%;
+    		transform: translate(-50%, -50%);
+			height:50%;
+			display: flex;
+    		justify-content: space-around;
+		}
+
+		.time{
+			position:fixed;
+			right:50px;
+			top:50px;
+			font-size:42px;
+			font-family: Mentimun;
+		}
+
+		textarea{
+			width: 100%;
+		    font-family: courier;
+		    font-size: 24px;
+		    text-align: center;
+		    border: none;		    
+		    padding-top: 50px;
+		    transition: box-shadow, 2.5s;
+		}
+
+		textarea:focus-visible {
+		    outline-offset: 0px;
+		    outline:none;
+		    box-shadow: rgb(0 0 0 / 45%) 0px 25px 20px -20px;
+		}
+
+		.fas{
+			/* color:#fff; */
+		}
+
+
+
+		ul{
+			list-style-type: none;
+			position: fixed;
+			bottom:50px;
+			right:50px;
+		}
+
+		li{
+			display: inline;
+			margin-left:20px;
+			cursor: pointer;
+		}
+
+		.close_screen {
+		    width: 0;
+		    height: 100%;
+		    background-color: #212121;
+		    position: fixed;
+		    top: 0;
+		    left: 0;
+		    transition: width, 0.75s;		 	
+		  }
+
+		  .close_screen div{
+		    font-family: Mentimun;
+		    font-size:48px;
+		    color: #fff;
+		    width: 200px;
+		    text-align: center;
+		    margin:25% auto;
+		  }
+
+		  .close_screen .end{
+		  	display: none;
+		  }
+
+		  .fa-times{
+			color: #fff;
+			position: fixed;
+			top:75px;
+			left: 50%;
+    		transform: translate(-50%, -50%);
+    	}
+
+    	.time, .close_it{
+    		cursor: pointer;
+    	}
+
+    	.title input[type="text"], .title input[type="text"]:focus, .title input[type="text"]:focus-visible {
+		    border: none;
+		    outline: none;
+		    font-size:32px;
+			font-family: Mentimun;
+		}
+    
+		.title{
+			position: absolute;
+			top:50px;
+			left:50px;
+		}
+
+		input[type="number"] {
+		    padding: 30px;
+		    border: 1px solid #fff;
+		    border-radius: 5px;
+		    font-size: 32px;
+		    font-family: Mentimun;
+		    width: 130px;
+		    text-align: center;
+		}
+
+		input.submit_timer_number {
+		    margin-top: 20px;
+		    width: 130px;
+		    padding: 12px 30px;
+		    border: 1px solid #fff;
+		    border-radius: 5px;
+		    font-size: 32px;
+		    font-family: Mentimun;
+		    width: 130px;
+		    text-align: center;
+		    color: #fff;
+    		background: #001919;
+    		cursor: pointer;
+		}
+
+
+
+		input[type="submit"] {
+			font-size: 22px;
+		    font-family: Mentimun;
+		}
+
+		input[type=number]::-webkit-inner-spin-button, 
+		input[type=number]::-webkit-outer-spin-button { 
+		    -webkit-appearance: none;
+		    -moz-appearance: none;
+		    appearance: none; 
+		}
+
+		.timer_set{
+			display: none;
+		}
+
+
+		
+	</style>
+</head>
+<body>
+
+<div class="title"><input type="text" placeholder="Title"></div>
+<div class="time"><i class="fas fa-solid fa-clock fa-1x"></i></div>
+
+<div class="wrapper">
+
+<textarea id="text-val" rows="4" cols="50">
+And then begin ...
+</textarea>		
+
+
+
+</div>
+
+<ul>
+<!-- <li><i class="fas fa-solid fa-lightbulb fa-3x"></i></li> -->
+<!-- <li><i class="fas fa-solid fa-palette fa-3x"></i></li> -->
+<!-- <li><i class="fas fa-envelope fa-3x"></i></li> -->
+<li id="dwn-btn"><i class="fas fa-solid fa-arrow-down fa-3x"></i></li>
+</ul>
+
+<div class="close_screen">
+
+<div class="close_it">
+	<i class="fas fa-times fa-1x"></i>
+</div>
+
+<div class="end to_be_hidden">
+	<p>Time!</p>	
+</div>
+<div class="timer_set to_be_hidden">
+	<input type="number" placeholder="20">
+	<input class="submit_timer_number" type="submit" value="Start">	
+</div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+
+// Download As Text
+
+function download(filename, text) {
+    var element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    element.setAttribute('download', filename);
+
+    element.style.display = 'none';
+    document.body.appendChild(element);
+
+    element.click();
+
+    document.body.removeChild(element);
+}
+
+	// Start file download.
+	document.getElementById("dwn-btn").addEventListener("click", function(){
+    // Generate download of hello.txt file with some content
+    var text = document.getElementById("text-val").value;
+    var textTitle = document.querySelector(".title input").value;
+    var filename = textTitle;
+    
+    download(filename, text);
+}, false);
+
+// Timer Open / Close
+
+
+$('.time').click(function(){
+
+$('.close_screen').css("width","100%");
+setTimeout(function(){ 
+
+$('.timer_set').fadeIn();  
+
+}, 750);
+
+});
+
+function CloseScreen() {
+    
+   $('.close_screen').css("width","0");
+   $('.to_be_hidden').hide();
+}
+
+$('.close_it').click(function(){
+
+	CloseScreen();
+
+});
+
+document.querySelector(".submit_timer_number").addEventListener("click", function(){
+
+	var Timer_toBe = document.querySelector("input[type=number]").value;
+	document.querySelector(".time").innerText = Timer_toBe;
+	
+	CloseScreen();
+	CountDownTimeInit();
+
+	
+
+});
+
+var minute = Math.floor(1000 * 60); 
+	// 60000
+//var testminute = 5000
+
+function CountDownTimeInit() {
+	var countdownFrom  = document.querySelector(".time").innerText;
+
+//alert(countdownFromInt);
+
+function CountDownInit() {
+
+	if (countdownFrom > 1){
+
+	countdownFrom -= 1;
+	document.querySelector(".time").innerText = countdownFrom;
+
+	}
+
+	else{
+
+	clearInterval(z);	
+	$('.close_screen').css("width","100%");
+
+	setTimeout(function(){ 
+
+	$('.end').fadeIn(); 
+	document.querySelector(".time").innerHTML = "<i class='fas fa-solid fa-clock fa-1x'></i>"; 
+
+	}, 750);
+
+	}
+
+	//alert("Minute");
+}
+
+var z = setInterval(function() {CountDownInit();},minute);
+
+}
+
+
+
+</script>
+</body>
+</html>
+
+
+<div class="time"></div>
