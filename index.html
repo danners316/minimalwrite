@@ -210,7 +210,8 @@
 <ul>
 <!-- <li><i class="fas fa-solid fa-lightbulb fa-3x"></i></li> -->
 <li id="theme_change"><i class="fas fa-solid fa-palette fa-3x"></i></li>
-<!-- <li><i class="fas fa-envelope fa-3x"></i></li> -->
+<li class="mail_to"><i class="fas fa-envelope fa-3x"></i></li>
+<li class="mail_to kindle"><i class="fas fa-tablet fa-3x"></i></li>
 <li id="dwn-btn"><i class="fas fa-solid fa-arrow-down fa-3x"></i></li>
 </ul>
 
@@ -358,6 +359,28 @@ else{
 
 	 
 });
+
+// Mailto 
+
+$('.mail_to').click(function(){
+
+var text = $("#text-val").val();
+var textTitle = $(".title input").val();
+
+if ($(this).hasClass('kindle'))
+{
+var email = "daniel.reynolds7a_sendto@kindle.com";
+}
+else{
+var email = "daniel.reynolds7a@gmail.com";	
+}
+
+var link_generate = "mailto:" + email + "&subject=" + textTitle + "&body=" + text;
+
+location.href = link_generate;
+
+});
+
 
 
 
