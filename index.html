@@ -213,7 +213,7 @@
 </div>
 
 <ul>
-<!-- <li><i class="fas fa-solid fa-lightbulb fa-3x"></i></li> -->
+<li id="bulb_change"><i class="fas fa-solid fa-lightbulb fa-2x"></i></li>
 <li id="theme_change"><i class="fas fa-solid fa-palette fa-2x"></i></li>
 <li id="font_change"><i class="fas fa-solid fa-pen fa-2x"></i></li>
 <li class="mail_to kindle"><i class="fas fa-tablet fa-2x"></i></li>
@@ -405,6 +405,51 @@ var link_generate = "mailto:" + email + "&subject=" + textTitle + "&body=" + tex
 location.href = link_generate;
 
 });
+
+//idea
+
+function randomWord() {
+
+const nounsActors = ["man", "girl", "woman", "child", "animal", "boy"]
+var nounsActorsNum = nounsActors.length;
+var rand1 = Math.random() * nounsActorsNum;
+rand1 = Math.floor(rand1);
+nounsActor = nounsActors[rand1];
+
+const verb1s = ["ran", "saved", "levelled", "chilled", "dug out", "forwarned"]
+var verbsNum = nounsActors.length;
+var rand2 = Math.random() * verbsNum;
+rand2 = Math.floor(rand2);
+verb1 = verb1s[rand2];
+
+const prep1s = ["towards", "without", "away from", "in the midst of", "because of", "behind"]
+var prep1snum = prep1s.length;
+var rand3 = Math.random() * prep1snum;
+rand3 = Math.floor(rand3);
+prep1 = prep1s[rand3];
+
+const nounsActeds = ["water", "knowledge", "idea", "question", "bravado", "silence"]
+var nounsActedsNum = nounsActeds.length;
+var rand4 = Math.random() * nounsActedsNum;
+rand4 = Math.floor(rand4);
+nounsActed = nounsActeds[rand4];
+
+var sentence = "The " + nounsActor + " " + verb1 + " " + prep1 + " the " +  nounsActed;
+
+//alert(sentence);
+
+$("textarea").attr("placeholder",sentence);
+
+}
+
+$('#bulb_change').click(function(){
+
+randomWord();
+
+});
+
+
+
 
 
 
