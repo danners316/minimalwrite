@@ -53,7 +53,7 @@
 		    border: none;		    
 		    padding-top: 50px;
 		    padding-left: 50px;
-		    transition: box-shadow, 2.5s;
+		    /* transition: box-shadow, 0.5s; */
 		}
 
 		textarea:focus-visible {
@@ -84,17 +84,17 @@
 		.close_screen {
 		    width: 0;
 		    height: 100%;
-		    background-color: #212121;
+		    background-color: #212121;		    
+		    color: #fff;
 		    position: fixed;
 		    top: 0;
 		    left: 0;
-		    transition: width, 0.75s;		 	
+		    transition: width, 0.5s;		 	
 		  }
 
 		  .close_screen div{
 		    font-family: Mentimun;
 		    font-size:48px;
-		    color: #fff;
 		    width: 200px;
 		    text-align: center;
 		    margin:25% auto;
@@ -106,10 +106,13 @@
 
 		  .fa-times{
 			color: #fff;
-			position: fixed;
-			top:75px;
-			left: 50%;
-    		transform: translate(-50%, -50%);
+		    position: fixed;
+		    top: 50px;
+		    right: 50px;    		
+    	}
+
+    	.close_it{
+    		display: none;
     	}
 
     	.time, .close_it{
@@ -172,6 +175,20 @@
 			display: none;
 		}
 
+		 .dark_theme{
+		  	background-color: #212121;
+		  	color: #fff;
+
+		  }
+
+		  .dark_theme_inv{
+		  	background-color: #fff;
+		  	color: #212121;
+		  }
+
+
+
+
 
 		
 	</style>
@@ -192,7 +209,7 @@
 
 <ul>
 <!-- <li><i class="fas fa-solid fa-lightbulb fa-3x"></i></li> -->
-<!-- <li><i class="fas fa-solid fa-palette fa-3x"></i></li> -->
+<li id="theme_change"><i class="fas fa-solid fa-palette fa-3x"></i></li>
 <!-- <li><i class="fas fa-envelope fa-3x"></i></li> -->
 <li id="dwn-btn"><i class="fas fa-solid fa-arrow-down fa-3x"></i></li>
 </ul>
@@ -249,7 +266,8 @@ $('.time').click(function(){
 $('.close_screen').css("width","100%");
 setTimeout(function(){ 
 
-$('.timer_set').fadeIn();  
+$('.timer_set').fadeIn(); 
+$('.close_it').fadeIn(); 
 
 }, 750);
 
@@ -259,6 +277,7 @@ function CloseScreen() {
     
    $('.close_screen').css("width","0");
    $('.to_be_hidden').hide();
+   $('.close_it').hide(); 
 }
 
 $('.close_it').click(function(){
@@ -305,6 +324,7 @@ function CountDownInit() {
 	setTimeout(function(){ 
 
 	$('.end').fadeIn(); 
+	$('.close_it').fadeIn(); 
 	document.querySelector(".time").innerHTML = "<i class='fas fa-solid fa-clock fa-1x'></i>"; 
 
 	}, 750);
@@ -317,6 +337,27 @@ function CountDownInit() {
 var z = setInterval(function() {CountDownInit();},minute);
 
 }
+
+
+// Theme Change
+
+$('#theme_change').click(function(){
+
+if ($('body').hasClass('dark_theme')){
+
+	$("body, .title, textarea, .fas, .title input[type='text'], .title input[type='text']:focus, .title input[type='text']:focus-visible").removeClass("dark_theme");
+	$(".close_screen, .fa-times").removeClass("dark_theme_inv");
+}
+else{
+
+	$("body, .title, textarea, .fas, .title input[type='text'], .title input[type='text']:focus, .title input[type='text']:focus-visible").addClass("dark_theme");
+	$(".close_screen, .fa-times").addClass("dark_theme_inv");
+
+}
+
+
+	 
+});
 
 
 
