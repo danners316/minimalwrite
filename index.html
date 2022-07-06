@@ -47,7 +47,7 @@
 
 		textarea{
 			width: 100%;
-		    font-family: courier;
+		    font-family: courier;		    
 		    font-size: 24px;
 		    text-align: left;
 		    border: none;		    
@@ -186,6 +186,11 @@
 		  	color: #212121;
 		  }
 
+		  .font_2{
+		  	font-family: 'Trebuchet MS', sans-serif;
+		    letter-spacing: 0.1em;
+		  }
+
 
 
 
@@ -209,10 +214,11 @@
 
 <ul>
 <!-- <li><i class="fas fa-solid fa-lightbulb fa-3x"></i></li> -->
-<li id="theme_change"><i class="fas fa-solid fa-palette fa-3x"></i></li>
-<li class="mail_to"><i class="fas fa-envelope fa-3x"></i></li>
-<li class="mail_to kindle"><i class="fas fa-tablet fa-3x"></i></li>
-<li id="dwn-btn"><i class="fas fa-solid fa-arrow-down fa-3x"></i></li>
+<li id="theme_change"><i class="fas fa-solid fa-palette fa-2x"></i></li>
+<li id="font_change"><i class="fas fa-solid fa-pen fa-2x"></i></li>
+<li class="mail_to kindle"><i class="fas fa-tablet fa-2x"></i></li>
+<li class="mail_to"><i class="fas fa-envelope fa-2x"></i></li>
+<li id="dwn-btn"><i class="fas fa-solid fa-arrow-down fa-2x"></i></li>
 </ul>
 
 <div class="close_screen">
@@ -353,6 +359,25 @@ else{
 
 	$("body, .title, textarea, .fas, .title input[type='text'], .title input[type='text']:focus, .title input[type='text']:focus-visible").addClass("dark_theme");
 	$(".close_screen, .fa-times").addClass("dark_theme_inv");
+
+}
+
+
+	 
+});
+
+// Theme Change
+
+$('#font_change').click(function(){
+
+if ($('textarea').hasClass('font_2')){
+
+	
+	$("textarea").removeClass("font_2");
+}
+else{
+
+	$("textarea").addClass("font_2");
 
 }
 
