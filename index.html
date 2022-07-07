@@ -21,9 +21,11 @@
 		  src: url(fonts/Mentimun.ttf);
 		}
 
-		.wiltona{
-			font-family: Mentimun;
+		@font-face {
+		  font-family: Remington;
+		  src: url(fonts/remington-noiseless.ttf);
 		}
+
 
 		.wrapper{
 			background-color: grey;
@@ -111,6 +113,10 @@
 		    right: 50px;    		
     	}
 
+    	.fa-lightbulb {
+		    margin-right: 5px;
+		}
+
     	.close_it{
     		display: none;
     	}
@@ -187,9 +193,66 @@
 		  }
 
 		  .font_2{
-		  	font-family: 'Trebuchet MS', sans-serif;
+		  	font-family: Remington;
 		    letter-spacing: 0.1em;
 		  }
+
+		  .title_2{
+		  	font-family: Remington;
+		  }
+
+		  .end_show, .themes_on{
+		  	display: none;
+		  }
+
+
+.Cloak_outer{
+	
+	;
+
+}
+.Cloak {
+    position: fixed;
+    width: 99%;
+    height: 98%;
+    margin: 0;
+    padding: 25% 0;
+    background-color: #000;
+    z-index: 99;
+    display: flex;
+  	justify-content: center; 
+  	opacity:1;   
+  	transition: opacity, 1s;
+}
+
+.typewriter h1 {
+	font-family: Remington;
+	color: #fff;
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  border-right: .15em solid orange; /* The typwriter cursor */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  letter-spacing: .15em; /* Adjust as needed */
+  animation: 
+    typing 3.5s steps(40, end),
+    blink-caret .75s step-end infinite;
+}
+
+/* The typing effect */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: orange; }
+}
+
+		  
+
+		  
 
 
 
@@ -202,7 +265,14 @@
 
 <div class="title"><input type="text" placeholder="Title"></div>
 <div class="time"><i class="fas fa-solid fa-clock fa-1x"></i></div>
+<div class="Cloak_outer">
+<div class="Cloak">
 
+<div class="typewriter">
+  <h1>Welcome To Minimalwriter. Click to Begin.</h1>
+</div>
+
+</div></div>
 <div class="wrapper">
 
 <textarea id="text-val" rows="4" cols="50" placeholder="And then begin ...">
@@ -213,12 +283,13 @@
 </div>
 
 <ul>
-<li id="bulb_change"><i class="fas fa-solid fa-lightbulb fa-2x"></i></li>
-<li id="theme_change"><i class="fas fa-solid fa-palette fa-2x"></i></li>
-<li id="font_change"><i class="fas fa-solid fa-pen fa-2x"></i></li>
-<li class="mail_to kindle"><i class="fas fa-tablet fa-2x"></i></li>
-<li class="mail_to"><i class="fas fa-envelope fa-2x"></i></li>
-<li id="dwn-btn"><i class="fas fa-solid fa-arrow-down fa-2x"></i></li>
+<li id="clear_it" class="themes_on"><i class="fas fa-solid fa-trash fa-2x"></i></li>	
+<li id="bulb_change" class="themes"><i class="fas fa-solid fa-lightbulb fa-2x"></i></li>
+<li id="theme_change" class=""><i class="fas fa-solid fa-palette fa-2x"></i></li>
+<li id="font_change" class=""><i class="fas fa-solid fa-pen fa-2x"></i></li>
+<li class="mail_to kindle end_show"><i class="fas fa-tablet fa-2x"></i></li>
+<li class="mail_to end_show"><i class="fas fa-envelope fa-2x"></i></li>
+<li id="dwn-btn" class="end_show"><i class="fas fa-solid fa-arrow-down fa-2x"></i></li>
 </ul>
 
 <div class="close_screen">
@@ -239,6 +310,60 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
 
+$(".Cloak").on("click", function(){
+
+	$(this).css("opacity","0");
+
+	setTimeout(function(){ 
+
+	$(".Cloak_outer").hide();
+	 
+
+	}, 750);
+
+});
+
+function reset(){
+
+	$(".themes_on").fadeOut(500); 
+
+    setTimeout(function(){ 
+
+	$(".themes").fadeIn(500);
+	 
+
+	}, 750);
+
+
+}
+
+$("#clear_it").on('click', function() {
+    
+    //alert("1f1");
+    $("textarea").val('');
+    reset();
+   
+
+});
+
+$("textarea").on('change keyup paste', function() {
+if($("textarea").val('')){
+
+	$(".themes").fadeOut(500); 
+
+    setTimeout(function(){ 
+
+	$(".themes_on").fadeIn(500);
+	 
+
+	}, 750);
+
+}
+    
+    
+    
+
+});
 
 // Download As Text
 
@@ -275,6 +400,7 @@ setTimeout(function(){
 
 $('.timer_set').fadeIn(); 
 $('.close_it').fadeIn(); 
+ 
 
 }, 750);
 
@@ -332,6 +458,7 @@ function CountDownInit() {
 
 	$('.end').fadeIn(); 
 	$('.close_it').fadeIn(); 
+	$('.end_show').fadeIn();
 	document.querySelector(".time").innerHTML = "<i class='fas fa-solid fa-clock fa-1x'></i>"; 
 
 	}, 750);
@@ -370,17 +497,20 @@ else{
 
 $('#font_change').click(function(){
 
+
+$(".title input[type='text'], .title input[type='text']:focus, .title input[type='text']:focus-visible").addClass('font_2_title');
+
 if ($('textarea').hasClass('font_2')){
 
-	
 	$("textarea").removeClass("font_2");
 }
 else{
 
+	
 	$("textarea").addClass("font_2");
+	$(".title input[type='text'], .title input[type='text']:focus, .title input[type='text']:focus-visible").addClass("title_2");
 
 }
-
 
 	 
 });
@@ -410,70 +540,66 @@ location.href = link_generate;
 
 function randomWord() {
 
-const nounsActors = ["man", "girl", "woman", "child", "animal", "boy", "actors", "cowards", "holy men", "law", "gentlemen", "women", "men", "law makers", "shadow", "dead", "living", "down trodden", "unholy", "weary", "widow", "priest", "feeling", "sound"]
+
+//function shuffle() {
+
+const nounsActors = ["man", "girl", "woman", "child", "animal", "boy", "actors", "cowards", "holy men", "law", "gentlemen", "women", "men", "law makers", "shadow", "dead", "living", "down trodden", "unholy", "weary", "widow", "priest", "feeling", "sound", "cows", "pigs", "beast"]
 var nounsActorsNum = nounsActors.length;
 var rand1 = Math.random() * nounsActorsNum;
 rand1 = Math.floor(rand1);
-nounsActor = nounsActors[rand1];
+var nounsActor = nounsActors[rand1];
 
-const verb1s = ["sailed", "ran", "saved", "searched", "chilled", "dug out", "forwarned", "looked", "glided", "postured", "shot", "was heard", "incited", "pondered", "talked", "sang", "spoke", "waved", "walked", "danced", "grimaced", "enraged", "criminalised", "vanished", "dissapeared"]
+const verb1s = ["sailed", "ran", "saved", "searched", "chilled", "buried", "forwarned", "looked", "glided", "postured", "shot", "heard", "incited", "pondered", "talked", "sang", "spoke", "waved", "walked", "danced", "grimaced", "enraged", "criminalised", "vanished", "dissapeared"]
 var verbsNum = nounsActors.length;
 var rand2 = Math.random() * verbsNum;
 rand2 = Math.floor(rand2);
-verb1 = verb1s[rand2];
+var verb1 = verb1s[rand2];
 
-const prep1s = ["towards", "without", "with", "away from", "in the midst of", "because of", "behind", "in front of", "at the mercy of", "into", "in", "of"]
+const prep1s = ["towards", "without", "with", "away from", "in the midst of", "because of", "by", "like", "to", "behind", "in front of", "at the mercy of", "into", "in", "of", "on", "at", "at the might of"]
 var prep1snum = prep1s.length;
 var rand3 = Math.random() * prep1snum;
 rand3 = Math.floor(rand3);
 prep1 = prep1s[rand3];
 
-const adj1s = ["heavy", "silent", "still", "raging", "deathly", "unspoken", "warm", "cold", "blue", "white", "black", "feared", "unspoken", "grave", "wet"]
+const adj1s = ["heavy", "silent", "still", "raging", "deathly", "muted", "warm", "cold", "blue", "white", "black", "feared", "", "grave", "wet", "sombre", "happy", "modest", "charming", "nervous", "dreadful"]
 var adj1snum = adj1s.length;
 var rand5 = Math.random() * adj1snum;
 rand5 = Math.floor(rand5);
-adj1 = adj1s[rand5];
+var adj1 = adj1s[rand5];
+
+const adj2s = ["crass", "ambiguous", "burdened", "enraged", "brutal", "opinonated", "chilvarous", "grave", "scandalous", "chivalrous", "gruesome", "lonely", "deadly", "good mannered"]
+var adj2snum = adj2s.length;
+var rand11 = Math.random() * adj2snum;
+rand11 = Math.floor(rand11);
+var adj2 = adj2s[rand11];
 
 const nounsActeds = ["water", "knowledge", "idea", "question", "bravado", "silence", "truth", "rhythm", "sentence", "damage", "sea", "council", "land", "tribe", "boundary", "governance", "sea", "growth", "rivalry"]
 var nounsActedsNum = nounsActeds.length;
 var rand4 = Math.random() * nounsActedsNum;
 rand4 = Math.floor(rand4);
-nounsActed = nounsActeds[rand4];
+var nounsActed = nounsActeds[rand4];
 
-// Senetence 2
+const nounsActed1s = ["dust", "maze", "colour", "spite", "anger", "wealth", "mist", "river", "smoke", "fog", "tree", "forest", "wood", "beach", "sand", "smog", "bird", "beast", "eye", "day", "expectation", "fear", "situation", "response", "future", "past", "divinity", "funeral", "birth", "dream"]
+var nounsActed1sNum = nounsActed1s.length;
+var rand10 = Math.random() * nounsActed1sNum;
+rand10 = Math.floor(rand10);
+var nounsActed1 = nounsActed1s[rand10];
 
-const pro1s = ["He", "She"]
-var pro1snum = pro1s.length;
-var rand6 = Math.random() * pro1snum;
-rand6 = Math.floor(rand6);
-pro1 = pro1s[rand6];
+//}
 
-const Verbpro1s = ["know", "speak", "tell", "hear", "rue", "fight", "seal", "trust", "dwell", "shout", "scream", "question"]
-var Verbpro1snum = Verbpro1s.length;
-var rand7 = Math.random() * Verbpro1snum;
-rand7 = Math.floor(rand7);
-Verbpro1 = Verbpro1s[rand7];
-
-const adv1s = ["kindly", "well", "fearfully", "quietly", "loudly", "ashamedly", "bashfully", "truthfully", "soundly"]
-var adv1snum = adv1s.length;
-var rand8 = Math.random() * adv1snum;
-rand8 = Math.floor(rand8);
-adv1 = adv1s[rand8];
-
-const pro2s = ["his", "her", "their"]
-var pro2snum = pro2s.length;
-var rand9 = Math.random() * pro2snum;
-rand9 = Math.floor(rand9);
-pro2 = pro2s[rand9];
-
-var sentence = "The " + nounsActor + " " + verb1 + " " + prep1 + " the " + adj1 + " " + nounsActed + ".";
-var sentence2 = pro1 + " " + Verbpro1  + "s " + adv1 + " " + "of" + " " + pro2 + " "  + nounsActed + ".";
-
-//alert(sentence);
+var sentence = "The " + nounsActor + " " + verb1 + " " + prep1 + " the " + adj2 + " " + nounsActed + ".";
 
 $("textarea").attr("placeholder",sentence);
 
+//
+
+var titlePlace = "A " + adj1 + " " + nounsActed1;
+
+$(".title input").attr("placeholder",titlePlace);
+
 }
+
+randomWord();
 
 $('#bulb_change').click(function(){
 
@@ -492,4 +618,3 @@ randomWord();
 </html>
 
 
-<div class="time"></div>
