@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>Minimalwriter</title>
+	<link rel="icon" type="image/x-icon" href="circled-m.png">
 	<!-- ViewPort -->
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<!-- FA -->
@@ -86,7 +87,7 @@
 		.close_screen {
 		    width: 0;
 		    height: 100%;
-		    background-color: #212121;		    
+		    background-color: #000000;		    
 		    color: #fff;
 		    position: fixed;
 		    top: 0;
@@ -182,14 +183,14 @@
 		}
 
 		 .dark_theme{
-		  	background-color: #212121;
+		  	background-color: #000000;
 		  	color: #fff;
 
 		  }
 
 		  .dark_theme_inv{
 		  	background-color: #fff;
-		  	color: #212121;
+		  	color: #000000;
 		  }
 
 		  .font_2{
@@ -206,11 +207,7 @@
 		  }
 
 
-.Cloak_outer{
-	
-	;
 
-}
 .Cloak {
     position: fixed;
     width: 99%;
@@ -347,7 +344,7 @@ $("#clear_it").on('click', function() {
 });
 
 $("textarea").on('change keyup paste', function() {
-if($("textarea").val('')){
+
 
 	$(".themes").fadeOut(500); 
 
@@ -358,7 +355,7 @@ if($("textarea").val('')){
 
 	}, 750);
 
-}
+
     
     
     
