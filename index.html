@@ -48,6 +48,14 @@
 			font-family: Mentimun;
 		}
 
+		.mssgbox {
+		    position: fixed;
+		    bottom: 50px;
+		    left: 50px;
+		    font-size: 42px;
+		    font-family: Mentimun;
+		}
+
 		textarea{
 			width: 100%;
 		    font-family: courier;		    
@@ -116,6 +124,10 @@
 
     	.fa-lightbulb {
 		    margin-right: 5px;
+		}
+
+		.fa-angle-down{
+			margin-left: 25px;
 		}
 
     	.close_it{
@@ -202,7 +214,7 @@
 		  	font-family: Remington;
 		  }
 
-		  .end_show, .themes_on{
+		  .end_show, .themes_on, .hid_icon{
 		  	display: none;
 		  }
 
@@ -220,6 +232,7 @@
   	justify-content: center; 
   	opacity:1;   
   	transition: opacity, 1s;
+  	/*display: none;*/
 }
 
 .typewriter h1 {
@@ -247,6 +260,11 @@
   50% { border-color: orange; }
 }
 
+#show_hide_icons i{
+	-webkit-transition: -webkit-transform .5s ease-in-out;
+    -ms-transition: -ms-transform .5s ease-in-out;
+    transition: transform .5s ease-in-out; 
+}
 		  
 
 		  
@@ -262,6 +280,7 @@
 
 <div class="title"><input type="text" placeholder="Title"></div>
 <div class="time"><i class="fas fa-solid fa-clock fa-1x"></i></div>
+<div class="mssgbox"></div>
 <div class="Cloak_outer">
 <div class="Cloak">
 
@@ -272,21 +291,25 @@
 </div></div>
 <div class="wrapper">
 
-<textarea id="text-val" rows="4" cols="50" placeholder="And then begin ...">
+<textarea id="text-val" rows="4" cols="50" spellcheck="true" placeholder="And then begin ...">
 </textarea>		
+
 
 
 
 </div>
 
 <ul>
-<li id="clear_it" class="themes_on"><i class="fas fa-solid fa-trash fa-2x"></i></li>	
-<li id="bulb_change" class="themes"><i class="fas fa-solid fa-lightbulb fa-2x"></i></li>
-<li id="theme_change" class=""><i class="fas fa-solid fa-palette fa-2x"></i></li>
-<li id="font_change" class=""><i class="fas fa-solid fa-pen fa-2x"></i></li>
-<li class="mail_to kindle end_show"><i class="fas fa-tablet fa-2x"></i></li>
-<li class="mail_to end_show"><i class="fas fa-envelope fa-2x"></i></li>
-<li id="dwn-btn" class="end_show"><i class="fas fa-solid fa-arrow-down fa-2x"></i></li>
+<!-- <li id="check_it" class=""><i class="fas fa-solid fa-spell-check fa-2x"></i></li>-->
+<li id="count_it" class="hideable_icon"><i class="fas fa-solid fa-won-sign fa-2x"></i></li>	
+<li id="clear_it" class="hideable_icon"><i class="fas fa-solid fa-trash fa-2x"></i></li>	
+<li id="bulb_change" class="themes hideable_icon"><i class="fas fa-solid fa-lightbulb fa-2x"></i></li>
+<li id="theme_change" class="hideable_icon"><i class="fas fa-solid fa-palette fa-2x"></i></li>
+<li id="font_change" class="hideable_icon"><i class="fas fa-solid fa-pen fa-2x"></i></li>
+<li class="mail_to kindle hideable_icon"><i class="fas fa-tablet fa-2x"></i></li>
+<li class="mail_to hideable_icon"><i class="fas fa-envelope fa-2x"></i></li>
+<li id="dwn-btn" class="hideable_icon"><i class="fas fa-solid fa-arrow-down fa-2x"></i></li>
+<li id="show_hide_icons" class=""><i class="fas fa-solid fa-angle-down fa-3x"></i></li>
 </ul>
 
 <div class="close_screen">
@@ -307,6 +330,71 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
 
+//
+function hide_icons(){
+
+
+	$(".hideable_icon").addClass('hid_icon');
+	$("#show_hide_icons i").css("transform","rotate(180deg)");
+	$('#show_hide_icons').addClass('icons_hid');
+}
+
+function show_icons(){
+	
+
+	$('#show_hide_icons').removeClass('icons_hid');
+	$("#show_hide_icons i").css("transform","rotate(0deg)");
+	$(".hideable_icon").removeClass('hid_icon');	
+
+}
+
+$("#show_hide_icons").on("click", function(){
+
+	if ($(this).hasClass('icons_hid')){
+		show_icons();
+	}
+	else{
+		hide_icons();
+	}
+
+});
+
+//Spell Check
+
+function spellCheck(){
+
+
+}
+
+$("#check_it").on("click", function(){
+spellCheck();
+});
+
+
+// Wordcounter
+
+function countWords(){
+
+let text = document.querySelector("textarea").value;
+const words = text.split(" ");
+let wordCount = words.length;
+
+document.querySelector(".mssgbox").innerText = wordCount;
+
+    setTimeout(function(){ 
+
+	document.querySelector(".mssgbox").innerText = "";
+	 
+
+	}, 10000);
+
+}
+
+$("#count_it").on("click", function(){
+countWords();
+});
+
+// Intro
 $(".Cloak").on("click", function(){
 
 	$(this).css("opacity","0");
@@ -316,7 +404,7 @@ $(".Cloak").on("click", function(){
 	$(".Cloak_outer").hide();
 	 
 
-	}, 750);
+	}, 1000);
 
 });
 
@@ -455,7 +543,7 @@ function CountDownInit() {
 
 	$('.end').fadeIn(); 
 	$('.close_it').fadeIn(); 
-	$('.end_show').fadeIn();
+	//$('.end_show').fadeIn();
 	document.querySelector(".time").innerHTML = "<i class='fas fa-solid fa-clock fa-1x'></i>"; 
 
 	}, 750);
@@ -472,6 +560,13 @@ var z = setInterval(function() {CountDownInit();},minute);
 
 // Theme Change
 
+function inittDarkTheme() {
+	$("body, .title, textarea, .fas, .title input[type='text'], .title input[type='text']:focus, .title input[type='text']:focus-visible").addClass("dark_theme");
+	$(".close_screen, .fa-times").addClass("dark_theme_inv");
+}
+
+inittDarkTheme();
+
 $('#theme_change').click(function(){
 
 if ($('body').hasClass('dark_theme')){
@@ -481,14 +576,15 @@ if ($('body').hasClass('dark_theme')){
 }
 else{
 
-	$("body, .title, textarea, .fas, .title input[type='text'], .title input[type='text']:focus, .title input[type='text']:focus-visible").addClass("dark_theme");
-	$(".close_screen, .fa-times").addClass("dark_theme_inv");
+	inittDarkTheme();	
 
 }
 
 
 	 
 });
+
+
 
 // Theme Change
 
