@@ -63,7 +63,8 @@
 		    text-align: left;
 		    border: none;		    
 		    padding-top: 50px;
-		    padding-left: 50px;
+		    padding-left: 35px;
+    		padding-right: 35px;
 		    /* transition: box-shadow, 0.5s; */
 		}
 
@@ -95,7 +96,7 @@
 		.close_screen {
 		    width: 0;
 		    height: 100%;
-		    background-color: #000000;		    
+		    background-color: #100c08;		    
 		    color: #fff;
 		    position: fixed;
 		    top: 0;
@@ -265,8 +266,40 @@
     -ms-transition: -ms-transform .5s ease-in-out;
     transition: transform .5s ease-in-out; 
 }
-		  
 
+.mobile_title{
+		display: none;
+	}
+		  
+@media (max-width: 600px){
+
+	.fa-angle-down {
+    margin-left: 0;
+	}
+
+	li {
+    display: block;
+    margin-left: 0;
+    margin-bottom: 25px;
+	}
+
+	.dektop_title{
+		display: none;
+	}
+
+	.mobile_title{
+		display: block;
+	}
+
+	.title input[type="text"], .title input[type="text"]:focus, .title input[type="text"]:focus-visible {
+	    font-size: 22px;
+	}
+
+	textarea {
+    font-size: 22px;
+	}
+
+}
 		  
 
 
@@ -285,7 +318,8 @@
 <div class="Cloak">
 
 <div class="typewriter">
-  <h1>Welcome To Minimalwriter. Click to Begin.</h1>
+  <h1 class="dektop_title">Welcome To Minimalwriter. Click to Begin.</h1>
+  <h1 class="mobile_title">Minimalwriter</h1>
 </div>
 
 </div></div>
@@ -538,7 +572,8 @@ function CountDownInit() {
 
 	clearInterval(z);	
 	//$('.close_screen').css("width","100%");
-	document.querySelector('.typewriter h1').innerText = 'Time is Up';
+	document.querySelector('.typewriter h1.dektop_title').innerText = 'Time is Up you absolute scoundrel ... Click to return!';
+	document.querySelector('.typewriter h1.mobile_title').innerText = 'Time is Up!';
 	$('.Cloak_outer').show();
 	$('.Cloak').css("opacity","1");
 	
