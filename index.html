@@ -537,12 +537,16 @@ function CountDownInit() {
 	else{
 
 	clearInterval(z);	
-	$('.close_screen').css("width","100%");
+	//$('.close_screen').css("width","100%");
+	document.querySelector('.typewriter h1').innerText = 'Time is Up';
+	$('.Cloak_outer').show();
+	$('.Cloak').css("opacity","1");
+	
 
 	setTimeout(function(){ 
 
-	$('.end').fadeIn(); 
-	$('.close_it').fadeIn(); 
+	
+	
 	//$('.end_show').fadeIn();
 	document.querySelector(".time").innerHTML = "<i class='fas fa-solid fa-clock fa-1x'></i>"; 
 
@@ -666,7 +670,7 @@ var rand11 = Math.random() * adj2snum;
 rand11 = Math.floor(rand11);
 var adj2 = adj2s[rand11];
 
-const nounsActeds = ["water", "knowledge", "idea", "question", "bravado", "silence", "truth", "rhythm", "sentence", "damage", "sea", "council", "land", "tribe", "boundary", "governance", "sea", "growth", "rivalry"]
+const nounsActeds = ["water", "knowledge", "idea", "question", "bravado", "silence", "truth", "rhythm", "sentence", "damage", "sea", "council", "land", "tribe", "boundary", "governance", "sea", "growth", "rivalry", "bastards", "crooks", "angels", "tyrants", "kings", "lunatics", "apostles", "followers", "gypsies"]
 var nounsActedsNum = nounsActeds.length;
 var rand4 = Math.random() * nounsActedsNum;
 rand4 = Math.floor(rand4);
