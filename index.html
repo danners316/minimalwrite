@@ -75,6 +75,7 @@
     		padding-right: 35px;
     		overflow-y: hidden;
     		line-height: 40px;
+    		caret-color: crimson;
 
 		    /* transition: box-shadow, 0.5s; */
 		}
@@ -181,14 +182,14 @@
 		}
 
 		input[type="number"] {
-		    padding: 20px;
-		    border: 5px solid #001919;
-		    border-radius: 5px;
-		    font-size: 32px;
-		    font-family: Mentimun;
-		    width: 85px;
-		    text-align: center;
-		    color: #001919;
+		        padding: 20px;
+			    border: 5px solid #001919;
+			    border-radius: 70px;
+			    font-size: 26px;
+			    font-family: Mentimun;
+			    width: 45px;
+			    text-align: center;
+			    color: #001919;
 		}
 
 		input.submit_timer_number {
@@ -845,9 +846,8 @@ var nounsActed1 = nounsActed1s[rand];
 var sentence3 = "The " + nounsActor + " " + verb1 + " " + prep1 + " the " + adj2 + " " + nounsActed + ".";
 var sentence4 = "The " + nounsActor + " " + motionVerb + " " + motionPrep + " the " + toNoun + ".";
 var sentence1 = "The " + nounsActor + " " + ofVerb + " of the " + nounsActed + ".";
-var sentence2 = "He " + verb1 + " " + prep1 + " it " + illy + " .";
 
-var sentences = [sentence1, sentence2, sentence3, sentence2]
+var sentences = [sentence1, sentence3, sentence4]
 var sentencesnum = sentences.length;
 var rand = Math.random() * sentencesnum;
 rand = Math.floor(rand);
