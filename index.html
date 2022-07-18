@@ -11,10 +11,12 @@
 	<style type="text/css">
 
 		*::selection {
-		  background: #e3e3e3; /* WebKit/Blink Browsers */
+		  background: transparent;
+		  color: crimson; /* WebKit/Blink Browsers */
 		}
 		*::-moz-selection {
-		  background: #e3e3e3; /* Gecko Browsers */
+		  background: transparent;
+		  color: crimson; /* Gecko Browsers */
 		}
 
 		@font-face {
@@ -27,9 +29,15 @@
 		  src: url(fonts/remington-noiseless.ttf);
 		}
 
+		@font-face {
+		  font-family: Notepad;
+		  src: url(fonts/notepad.ttf);
+		}
+
+
+
 
 		.wrapper{
-			background-color: grey;
 			position:fixed;
 			width: 100%;
 			top:50%;
@@ -59,13 +67,22 @@
 		textarea{
 			width: 100%;
 		    font-family: courier;		    
-		    font-size: 24px;
+		    font-size: 22px;
 		    text-align: left;
 		    border: none;		    
-		    padding-top: 50px;
-		    padding-left: 35px;
+		    padding-top: 50px;		    
+		    padding-left: 45px;
     		padding-right: 35px;
+    		overflow-y: hidden;
+    		line-height: 40px;
+
 		    /* transition: box-shadow, 0.5s; */
+		}
+
+		.lines {
+		    
+		    background-image: url(linesb.png), url(paper.png);
+		    background-repeat: repeat-y, repeat;
 		}
 
 		textarea:focus-visible {
@@ -75,9 +92,12 @@
 		}
 
 		.fas{
-			/* color:#fff; */
+			background-color: transparent;
 		}
 
+		.fa-trash {
+		    color: crimson;
+		}
 
 
 		ul{
@@ -137,29 +157,38 @@
 
     	.time, .close_it{
     		cursor: pointer;
-    	}
+    	}    	
 
-    	.title input[type="text"], .title input[type="text"]:focus, .title input[type="text"]:focus-visible {
+    	.dark_theme .title input[type="text"], .title input[type="text"]:focus, .title input[type="text"]:focus-visible {
 		    border: none;
 		    outline: none;
 		    font-size:32px;
 			font-family: Mentimun;
+			font-family: Remington;
+		}
+
+		.title input[type="text"], .title input[type="text"]:focus, .title input[type="text"]:focus-visible {
+		    border: none;
+		    outline: none;
+		    font-size:32px;
+			font-family: Notepad;
 		}
     
 		.title{
 			position: absolute;
 			top:50px;
-			left:50px;
+			left:45px;
 		}
 
 		input[type="number"] {
-		    padding: 30px;
-		    border: 1px solid #fff;
+		    padding: 20px;
+		    border: 5px solid #001919;
 		    border-radius: 5px;
 		    font-size: 32px;
 		    font-family: Mentimun;
-		    width: 130px;
+		    width: 85px;
 		    text-align: center;
+		    color: #001919;
 		}
 
 		input.submit_timer_number {
@@ -182,6 +211,8 @@
 		input[type="submit"] {
 			font-size: 22px;
 		    font-family: Mentimun;
+		    font-family: Remington;
+		    text-transform: uppercase;
 		}
 
 		input[type=number]::-webkit-inner-spin-button, 
@@ -206,17 +237,30 @@
 		  	color: #000000;
 		  }
 
-		  .font_2{
-		  	font-family: Remington;
-		    letter-spacing: 0.1em;
-		  }
-
 		  .title_2{
 		  	font-family: Remington;
 		  }
 
-		  .end_show, .themes_on, .hid_icon{
+		  .dark_theme .font_2{
+		  	font-family: Remington;
+		  	letter-spacing: 0.1em;
+		  }
+
+		  .font_2{
+		  	font-family: Notepad;
+		  }
+
+		  .end_show, .themes_on{
 		  	display: none;
+		  }
+
+		  .hideable_icon{
+		  	opacity: 1;
+		  	transition: opacity, 1s;
+		  }
+
+		  .hid_icon{
+		  	opacity: 0;
 		  }
 
 
@@ -233,7 +277,7 @@
   	justify-content: center; 
   	opacity:1;   
   	transition: opacity, 1s;
-  	/*display: none;*/
+  	display: none;
 }
 
 .typewriter h1 {
@@ -270,6 +314,11 @@
 .mobile_title{
 		display: none;
 	}
+
+	ul.ul_two {
+    bottom: 100px;
+    right: 130px;
+}
 		  
 @media (max-width: 600px){
 
@@ -333,16 +382,19 @@
 
 </div>
 
-<ul>
+<ul class="ul_two">
 <!-- <li id="check_it" class=""><i class="fas fa-solid fa-spell-check fa-2x"></i></li>-->
-<li id="count_it" class="hideable_icon"><i class="fas fa-solid fa-won-sign fa-2x"></i></li>	
-<li id="clear_it" class="hideable_icon"><i class="fas fa-solid fa-trash fa-2x"></i></li>	
-<li id="bulb_change" class="themes hideable_icon"><i class="fas fa-solid fa-lightbulb fa-2x"></i></li>
-<li id="theme_change" class="hideable_icon"><i class="fas fa-solid fa-palette fa-2x"></i></li>
-<li id="font_change" class="hideable_icon"><i class="fas fa-solid fa-pen fa-2x"></i></li>
-<li class="mail_to kindle hideable_icon"><i class="fas fa-tablet fa-2x"></i></li>
-<li class="mail_to hideable_icon"><i class="fas fa-envelope fa-2x"></i></li>
-<li id="dwn-btn" class="hideable_icon"><i class="fas fa-solid fa-arrow-down fa-2x"></i></li>
+<li id="count_it" class="hideable_icon hid_icon"><i class="fas fa-solid fa-won-sign fa-2x"></i></li>	
+<li id="clear_it" class="hideable_icon hid_icon"><i class="fas fa-solid fa-trash fa-2x"></i></li>	
+<li id="bulb_change" class="themes hideable_icon hid_icon"><i class="fas fa-solid fa-lightbulb fa-2x"></i></li>
+<li id="theme_change" class="hideable_icon hid_icon"><i class="fas fa-solid fa-palette fa-2x"></i></li>
+</ul>
+
+<ul>
+<li id="font_change" class="hideable_icon hid_icon"><i class="fas fa-solid fa-pen fa-2x"></i></li>
+<li class="mail_to kindle hideable_icon hid_icon"><i class="fas fa-tablet fa-2x"></i></li>
+<li class="mail_to hideable_icon hid_icon"><i class="fas fa-envelope fa-2x"></i></li>
+<li id="dwn-btn" class="hideable_icon hid_icon"><i class="fas fa-solid fa-arrow-down fa-2x"></i></li>
 <li id="show_hide_icons" class=""><i class="fas fa-solid fa-angle-down fa-3x"></i></li>
 </ul>
 
@@ -364,12 +416,15 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
 
+var y = $(window).scrollTop();  //your current y position on the page
+$(window).scrollTop(y+150);
+
 //
 function hide_icons(){
 
 
 	$(".hideable_icon").addClass('hid_icon');
-	$("#show_hide_icons i").css("transform","rotate(180deg)");
+	$("#show_hide_icons i").css("transform","rotate(270deg)");
 	$('#show_hide_icons').addClass('icons_hid');
 }
 
@@ -377,7 +432,7 @@ function show_icons(){
 	
 
 	$('#show_hide_icons').removeClass('icons_hid');
-	$("#show_hide_icons i").css("transform","rotate(0deg)");
+	$("#show_hide_icons i").css("transform","rotate(90deg)");
 	$(".hideable_icon").removeClass('hid_icon');	
 
 }
@@ -392,6 +447,8 @@ $("#show_hide_icons").on("click", function(){
 	}
 
 });
+
+hide_icons();
 
 //Spell Check
 
@@ -515,6 +572,7 @@ function download(filename, text) {
 $('.time').click(function(){
 
 $('.close_screen').css("width","100%");
+
 setTimeout(function(){ 
 
 $('.timer_set').fadeIn(); 
@@ -600,8 +658,9 @@ var z = setInterval(function() {CountDownInit();},minute);
 // Theme Change
 
 function inittDarkTheme() {
-	$("body, .title, textarea, .fas, .title input[type='text'], .title input[type='text']:focus, .title input[type='text']:focus-visible").addClass("dark_theme");
-	$(".close_screen, .fa-times").addClass("dark_theme_inv");
+	$("body, .title, textarea, .title input[type='text'], .title input[type='text']:focus, .title input[type='text']:focus-visible").addClass("dark_theme");
+	$("textarea").removeClass("lines");
+	
 }
 
 inittDarkTheme();
@@ -610,8 +669,9 @@ $('#theme_change').click(function(){
 
 if ($('body').hasClass('dark_theme')){
 
-	$("body, .title, textarea, .fas, .title input[type='text'], .title input[type='text']:focus, .title input[type='text']:focus-visible").removeClass("dark_theme");
-	$(".close_screen, .fa-times").removeClass("dark_theme_inv");
+	$("body, .title, textarea, .title input[type='text'], .title input[type='text']:focus, .title input[type='text']:focus-visible").removeClass("dark_theme");
+	$("textarea").addClass("lines");
+	
 }
 else{
 
@@ -630,18 +690,13 @@ else{
 $('#font_change').click(function(){
 
 
-$(".title input[type='text'], .title input[type='text']:focus, .title input[type='text']:focus-visible").addClass('font_2_title');
 
 if ($('textarea').hasClass('font_2')){
 
 	$("textarea").removeClass("font_2");
 }
-else{
-
-	
+else{	
 	$("textarea").addClass("font_2");
-	$(".title input[type='text'], .title input[type='text']:focus, .title input[type='text']:focus-visible").addClass("title_2");
-
 }
 
 	 
@@ -670,22 +725,65 @@ location.href = link_generate;
 
 //idea
 
+
+
+
+function randomWord2() {
+
+
+	arrays.forEach(spitword);
+
+	function spitword(arr, index) {	
+	
+	//index = 0,1,2 
+	var arrayLength = arr.length;
+	// Pick randon muber from 1 to length
+	var rand = Math.random() * arrayLength;
+	//Round Up 
+	rand = Math.floor(rand);
+	//Find that number of the array	and assign that item as word	
+	var word = arr[rand];
+	console.log(word);
+
+	}
+
+}
+
+var arrays = [
+//Open Arrays
+//Acting Verbs 
+["man", "girl", "woman", "child", "animal", "boy", "actors", "cowards", "holy men", "law", "gentlemen", "women", "men", "law makers", "shadow", "dead", "living", "down trodden", "unholy", "weary", "widow", "priest", "feeling", "sound", "cows", "pigs", "beast"],
+// Verbs Past
+["sailed", "ran", "saved", "searched", "chilled", "buried", "warned", "looked", "glided", "postured", "shot", "heard", "incited", "pondered", "talked", "sang", "spoke", "waved", "walked", "danced", "grimaced", "enraged", "criminalised", "vanished", "dissapeared"],
+// Preposition
+["towards", "without", "with", "away from", "in the midst of", "because of", "by", "like", "to", "behind", "in front of", "at the mercy of", "in", "of", "on", "at", "at the might of"]
+//Close Arrays
+]
+
+randomWord2.apply(this, arrays);
+
 function randomWord() {
 
 
 //function shuffle() {
 
-const nounsActors = ["man", "girl", "woman", "child", "animal", "boy", "actors", "cowards", "holy men", "law", "gentlemen", "women", "men", "law makers", "shadow", "dead", "living", "down trodden", "unholy", "weary", "widow", "priest", "feeling", "sound", "cows", "pigs", "beast"]
+const nounsActors = ["man", "girl", "woman", "child", "animal", "boy", "actors", "cowards", "holy men", "law", "gentlemen", "women", "men", "law makers", "shadow", "dead", "living", "unholy", "weary", "widow", "priest", "feeling", "sound", "cows", "pigs", "beast"]
 var nounsActorsNum = nounsActors.length;
-var rand1 = Math.random() * nounsActorsNum;
-rand1 = Math.floor(rand1);
-var nounsActor = nounsActors[rand1];
+var rand = Math.random() * nounsActorsNum;
+rand = Math.floor(rand);
+var nounsActor = nounsActors[rand];
 
-const verb1s = ["sailed", "ran", "saved", "searched", "chilled", "buried", "forwarned", "looked", "glided", "postured", "shot", "heard", "incited", "pondered", "talked", "sang", "spoke", "waved", "walked", "danced", "grimaced", "enraged", "criminalised", "vanished", "dissapeared"]
-var verbsNum = nounsActors.length;
-var rand2 = Math.random() * verbsNum;
-rand2 = Math.floor(rand2);
-var verb1 = verb1s[rand2];
+const ofVerbs = ["warned", "had heard", "talked", "sang", "spoke"]
+var verbsNum = ofVerbs.length;
+var rand= Math.random() * verbsNum;
+rand = Math.floor(rand);
+var ofVerb = ofVerbs[rand];
+
+const motionVerbs = ["sailed", "ran", "looked", "glided", "postured", "shot", "sang", "spoke", "waved", "walked", "danced"]
+var verbsNum = motionVerbs.length;
+var rand= Math.random() * verbsNum;
+rand = Math.floor(rand);
+var motionVerb = motionVerbs[rand];
 
 const prep1s = ["towards", "without", "with", "away from", "in the midst of", "because of", "by", "like", "to", "behind", "in front of", "at the mercy of", "into", "in", "of", "on", "at", "at the might of"]
 var prep1snum = prep1s.length;
@@ -693,33 +791,67 @@ var rand3 = Math.random() * prep1snum;
 rand3 = Math.floor(rand3);
 prep1 = prep1s[rand3];
 
-const adj1s = ["heavy", "silent", "still", "raging", "deathly", "muted", "warm", "cold", "blue", "white", "black", "feared", "", "grave", "wet", "sombre", "happy", "modest", "charming", "nervous", "dreadful"]
+const motionPreps = ["in", "towards", "into", "around", "before", "across"]
+var verbsNum = motionPreps.length;
+var rand= Math.random() * verbsNum;
+rand = Math.floor(rand);
+var motionPrep = motionPreps[rand];
+
+const toNouns = ["water", "sea", "bridge", "cliff", "fire", "smoke"]
+var toNounsNum = toNouns.length;
+var rand = Math.random() * toNounsNum;
+rand = Math.floor(rand);
+var toNoun = toNouns[rand];
+
+const verb1s = ["sailed", "ran", "saved", "searched", "chilled", "buried", "warned", "looked", "glided", "postured", "shot", "heard", "incited", "pondered", "talked", "sang", "spoke", "waved", "walked", "danced", "grimaced", "enraged", "criminalised", "vanished", "dissapeared"]
+var verbsNum = verb1s.length;
+var rand= Math.random() * verbsNum;
+rand = Math.floor(rand);
+var verb1 = verb1s[rand];
+
+const illys = ["easily", "silently", "brazenly"]
+var illysNum = illys.length;
+var rand= Math.random() * illysNum;
+rand = Math.floor(rand);
+var illy = illys[rand];
+
+const adj1s = ["heavy", "milky", "silent", "still", "raging", "deathly", "muted", "warm", "cold", "blue", "white", "black", "feared", "thunderous", "grave", "wet", "sombre", "happy", "modest", "charming", "nervous", "dreadful"]
 var adj1snum = adj1s.length;
-var rand5 = Math.random() * adj1snum;
-rand5 = Math.floor(rand5);
-var adj1 = adj1s[rand5];
+var rand = Math.random() * adj1snum;
+rand = Math.floor(rand);
+var adj1 = adj1s[rand];
 
 const adj2s = ["crass", "ambiguous", "burdened", "enraged", "brutal", "opinonated", "chilvarous", "grave", "scandalous", "chivalrous", "gruesome", "lonely", "deadly", "good mannered"]
 var adj2snum = adj2s.length;
-var rand11 = Math.random() * adj2snum;
-rand11 = Math.floor(rand11);
-var adj2 = adj2s[rand11];
+var rand = Math.random() * adj2snum;
+rand = Math.floor(rand);
+var adj2 = adj2s[rand];
 
-const nounsActeds = ["water", "knowledge", "idea", "question", "bravado", "silence", "truth", "rhythm", "sentence", "damage", "sea", "council", "land", "tribe", "boundary", "governance", "sea", "growth", "rivalry", "bastards", "crooks", "angels", "tyrants", "kings", "lunatics", "apostles", "followers", "gypsies"]
+const nounsActeds = ["water", "knowledge", "idea", "question", "bravado", "silence", "truth", "rhythm", "sentence", "damage", "sea", "council", "land", "tribe", "boundary", "sea", "growth", "rivalry", "bastards", "crooks", "angels", "tyrants", "kings", "lunatics", "apostles", "followers", "gypsies"]
 var nounsActedsNum = nounsActeds.length;
-var rand4 = Math.random() * nounsActedsNum;
-rand4 = Math.floor(rand4);
-var nounsActed = nounsActeds[rand4];
+var rand = Math.random() * nounsActedsNum;
+rand = Math.floor(rand);
+var nounsActed = nounsActeds[rand];
 
 const nounsActed1s = ["dust", "maze", "colour", "spite", "anger", "wealth", "mist", "river", "smoke", "fog", "tree", "forest", "wood", "beach", "sand", "smog", "bird", "beast", "eye", "day", "expectation", "fear", "situation", "response", "future", "past", "divinity", "funeral", "birth", "dream"]
 var nounsActed1sNum = nounsActed1s.length;
-var rand10 = Math.random() * nounsActed1sNum;
-rand10 = Math.floor(rand10);
-var nounsActed1 = nounsActed1s[rand10];
+var rand = Math.random() * nounsActed1sNum;
+rand = Math.floor(rand);
+var nounsActed1 = nounsActed1s[rand];
 
 //}
 
-var sentence = "The " + nounsActor + " " + verb1 + " " + prep1 + " the " + adj2 + " " + nounsActed + ".";
+
+var sentence3 = "The " + nounsActor + " " + verb1 + " " + prep1 + " the " + adj2 + " " + nounsActed + ".";
+var sentence4 = "The " + nounsActor + " " + motionVerb + " " + motionPrep + " the " + toNoun + ".";
+var sentence1 = "The " + nounsActor + " " + ofVerb + " of the " + nounsActed + ".";
+var sentence2 = "He " + verb1 + " " + prep1 + " it " + illy + " .";
+
+var sentences = [sentence1, sentence2, sentence3, sentence2]
+var sentencesnum = sentences.length;
+var rand = Math.random() * sentencesnum;
+rand = Math.floor(rand);
+var sentence = sentences[rand];
 
 $("textarea").attr("placeholder",sentence);
 
