@@ -122,7 +122,7 @@
 		    position: fixed;
 		    top: 0;
 		    left: 0;
-		    transition: width, 0.5s;		 	
+		    transition: width, 0.2s;		 	
 		  }
 
 		  .close_screen div{
@@ -579,7 +579,7 @@ $('.timer_set').fadeIn();
 $('.close_it').fadeIn(); 
  
 
-}, 750);
+}, 200);
 
 });
 
@@ -630,7 +630,7 @@ function CountDownInit() {
 
 	clearInterval(z);	
 	//$('.close_screen').css("width","100%");
-	document.querySelector('.typewriter h1.dektop_title').innerText = 'Time is Up you absolute scoundrel ... Click to return!';
+	document.querySelector('.typewriter h1.dektop_title').innerText = 'Time is Up ... Click to return!';
 	document.querySelector('.typewriter h1.mobile_title').innerText = 'Time is Up!';
 	$('.Cloak_outer').show();
 	$('.Cloak').css("opacity","1");
