@@ -259,13 +259,14 @@
 		  	display: none;
 		  }
 
-		  .hideable_icon{
-		  	opacity: 1;
-		  	transition: opacity, 1s;
+		  ul.ul_two.hid_ul{
+		  	right: -375px;
+		  	transition: right, 0.5s;
 		  }
 
-		  .hid_icon{
-		  	opacity: 0;
+		  ul.ul_two.show_ul{
+		  	right: 50px;
+		  	transition: right, 0.5s;
 		  }
 
 
@@ -351,7 +352,7 @@
 	}
 
 	ul.ul_two {
-    bottom: 100px;
+    bottom: 120px;
     right: 130px;
 }
 		  
@@ -417,20 +418,20 @@
 
 </div>
 
-<ul class="ul_two">
+<ul class="ul_two hid_ul">
 <!-- <li id="check_it" class=""><i class="fas fa-solid fa-spell-check fa-2x"></i></li>-->
-<li id="count_it" class="hideable_icon hid_icon"><i class="fas fa-solid fa-won-sign fa-2x"></i></li>	
-<li id="clear_it" class="hideable_icon hid_icon"><i class="fas fa-solid fa-trash fa-2x"></i></li>	
 <!-- <li id="bulb_change" class="themes hideable_icon hid_icon"><i class="fas fa-solid fa-lightbulb fa-2x"></i></li>-->
-<li id="theme_change" class="hideable_icon hid_icon"><i class="fas fa-solid fa-palette fa-2x"></i></li>
+<!-- <li ><i class="fas fa-solid fa-spell-check fa-2x"></i></li>
+<li class="mail_to hideable_icon hid_icon"><i class="fas fa-tablet fa-2x"></i></li> -->
+<li id="count_it"><i class="fas fa-solid fa-won-sign fa-2x"></i></li>	
+<li id="clear_it"><i class="fas fa-solid fa-trash fa-2x"></i></li>	
+<li id="font_change"><i class="fas fa-solid fa-pen fa-2x"></i></li>
+<li class="mail_to kindle hideable_icon hid_icon"><i class="fas fa-envelope fa-2x"></i></li>
+<li id="dwn-btn"><i class="fas fa-solid fa-arrow-down fa-2x"></i></li>
+<li id="theme_change"><i class="fas fa-solid fa-palette fa-2x"></i></li>
 </ul>
 
 <ul>
-<li id="font_change" class="hideable_icon hid_icon"><i class="fas fa-solid fa-pen fa-2x"></i></li>
-<!-- <li class="hideable_icon hid_icon"><i class="fas fa-solid fa-spell-check fa-2x"></i></li>
-<li class="mail_to hideable_icon hid_icon"><i class="fas fa-tablet fa-2x"></i></li> -->
-<li class="mail_to kindle hideable_icon hid_icon"><i class="fas fa-envelope fa-2x"></i></li>
-<li id="dwn-btn" class="hideable_icon hid_icon"><i class="fas fa-solid fa-arrow-down fa-2x"></i></li>
 <li id="show_hide_icons" class=""><i class="fas fa-solid fa-angle-down fa-3x"></i></li>
 </ul>
 
@@ -459,8 +460,8 @@ $(window).scrollTop(y+150);
 //
 function hide_icons(){
 
-
-	$(".hideable_icon").addClass('hid_icon');
+	$("ul.ul_two").removeClass('show_ul');
+	$("ul.ul_two").addClass('hid_ul');
 	$("#show_hide_icons i").css("transform","rotate(270deg)");
 	$('#show_hide_icons').addClass('icons_hid');
 }
@@ -468,9 +469,10 @@ function hide_icons(){
 function show_icons(){
 	
 
-	$('#show_hide_icons').removeClass('icons_hid');
+	$('ul.ul_two').removeClass('hid_ul');
+	$('ul.ul_two').addClass('show_ul');
 	$("#show_hide_icons i").css("transform","rotate(90deg)");
-	$(".hideable_icon").removeClass('hid_icon');	
+	$("#show_hide_icons").removeClass('icons_hid');	
 
 }
 
