@@ -427,6 +427,7 @@
 
 <ul>
 <li id="font_change" class="hideable_icon hid_icon"><i class="fas fa-solid fa-pen fa-2x"></i></li>
+<li onclick="$Spelling.SpellCheckInWindow('myTextArea')" class="hideable_icon hid_icon"><i class="fas fa-solid fa-spell-check fa-2x"></i></li>
 <!-- <li class="mail_to hideable_icon hid_icon"><i class="fas fa-tablet fa-2x"></i></li> -->
 <li class="mail_to kindle hideable_icon hid_icon"><i class="fas fa-envelope fa-2x"></i></li>
 <li id="dwn-btn" class="hideable_icon hid_icon"><i class="fas fa-solid fa-arrow-down fa-2x"></i></li>
@@ -450,6 +451,8 @@
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type='text/javascript' src='/JavaScriptSpellCheck/include.js' ></script>
+<script type='text/javascript'>$Spelling.SpellCheckAsYouType('text-val')</script>
 <script type="text/javascript">
 
 var y = $(window).scrollTop();  //your current y position on the page
