@@ -367,10 +367,6 @@
     margin-left: 0;
 	}
 
-	.fa-2x {
-    font-size: 1.5em;
-	}
-
 	li {
     margin-left: 10px;
 	}
@@ -406,6 +402,10 @@
 	  animation: 
 	    typing 2.5s steps(18, end),
 	    blink-caret .75s step-end infinite;
+	}
+
+	.mob_hide_always{
+		display:none;
 	}
 
 
@@ -448,11 +448,11 @@
 <!-- <li id="bulb_change" class="themes hideable_icon hid_icon"><i class="fas fa-solid fa-lightbulb fa-2x"></i></li>-->
 <!-- <li ><i class="fas fa-solid fa-spell-check fa-2x"></i></li>
 <li class="mail_to hideable_icon hid_icon"><i class="fas fa-tablet fa-2x"></i></li> -->
-<li class="time_click"><i class="fas fa-solid fa-clock fa-2x"></i></li>
-<li id="count_it"><i class="fas fa-solid fa-won-sign fa-2x"></i></li>	
+<li class="time_click mob_hide_always"><i class="fas fa-solid fa-clock fa-2x"></i></li>
+<li id="count_it" class="mob_hide_always"><i class="fas fa-solid fa-won-sign fa-2x"></i></li>	
 <li id="clear_it"><i class="fas fa-solid fa-trash fa-2x"></i></li>	
-<li id="font_change"><i class="fas fa-solid fa-pen fa-2x"></i></li>
-<li class="mail_to kindle hideable_icon hid_icon"><i class="fas fa-envelope fa-2x"></i></li>
+<li id="font_change" class="mob_hide_always"><i class="fas fa-solid fa-pen fa-2x"></i></li>
+<li class="mail_to kindle hideable_icon hid_icon mob_hide_always"><i class="fas fa-envelope fa-2x"></i></li>
 <li id="dwn-btn"><i class="fas fa-solid fa-arrow-down fa-2x"></i></li>
 <li id="theme_change"><i class="fas fa-solid fa-palette fa-2x"></i></li>
 
