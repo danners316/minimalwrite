@@ -39,7 +39,7 @@
 
 		.wrapper{
 			position:fixed;
-			width: 100%;
+			width: 99%;
 			top:50%;
 			left: 50%;
     		transform: translate(-50%, -50%);
@@ -295,7 +295,7 @@
   margin: 0 auto; /* Gives that scrolling effect as the typing happens */
   letter-spacing: .15em; /* Adjust as needed */
   animation: 
-    typing 3.5s steps(40, end),
+    typing 4.5s steps(42, end),
     blink-caret .75s step-end infinite;
 }
 
@@ -359,16 +359,16 @@
 		  
 @media (max-width: 600px){
 
+	.wrapper {
+    height: 70%;
+	}
+
 	.fa-angle-down {
     margin-left: 0;
 	}
 
 	li {
     margin-left: 10px;
-	}
-
-	.fa-2x {
-    font-size: 1.5em;
 	}
 
 	.dektop_title{
@@ -379,13 +379,28 @@
 		display: block;
 	}
 
-	.title input[type="text"], .title input[type="text"]:focus, .title input[type="text"]:focus-visible {
-	    font-size: 22px;
+	.dark_theme .title input[type="text"], .dark_theme .title input[type="text"]:focus, .dark_theme .title input[type="text"]:focus-visible, .title input[type="text"], .title input[type="text"]:focus, .title input[type="text"]:focus-visible {
+	    font-size: 24px;
 	}
 
 	textarea {
-    font-size: 22px;
+    font-size: 20px;
 	}
+
+	ul.ul_two.show_ul {
+    right: 120px;
+    transition: right, 0.5s;
+    bottom: 55px;
+	}
+
+	.typewriter h1 {
+	  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+	  letter-spacing: .20em; /* Adjust as needed */
+	  animation: 
+	    typing 2.5s steps(18, end),
+	    blink-caret .75s step-end infinite;
+	}
+
 
 }
 		  
@@ -400,7 +415,7 @@
 <body>
 
 <div class="title"><input type="text" placeholder="Title"></div>
-<div class="time"><i class="fas fa-solid fa-clock fa-1x"></i></div>
+<div class="time"></div>
 <div class="mssgbox"></div>
 <div class="Cloak_outer">
 <div class="Cloak">
@@ -426,12 +441,14 @@
 <!-- <li id="bulb_change" class="themes hideable_icon hid_icon"><i class="fas fa-solid fa-lightbulb fa-2x"></i></li>-->
 <!-- <li ><i class="fas fa-solid fa-spell-check fa-2x"></i></li>
 <li class="mail_to hideable_icon hid_icon"><i class="fas fa-tablet fa-2x"></i></li> -->
+<li class="time_click"><i class="fas fa-solid fa-clock fa-2x"></i></li>
 <li id="count_it"><i class="fas fa-solid fa-won-sign fa-2x"></i></li>	
 <li id="clear_it"><i class="fas fa-solid fa-trash fa-2x"></i></li>	
 <li id="font_change"><i class="fas fa-solid fa-pen fa-2x"></i></li>
 <li class="mail_to kindle hideable_icon hid_icon"><i class="fas fa-envelope fa-2x"></i></li>
 <li id="dwn-btn"><i class="fas fa-solid fa-arrow-down fa-2x"></i></li>
 <li id="theme_change"><i class="fas fa-solid fa-palette fa-2x"></i></li>
+
 </ul>
 
 <ul>
@@ -611,7 +628,7 @@ function download(filename, text) {
 // Timer Open / Close
 
 
-$('.time').click(function(){
+$('.time_click').click(function(){
 
 $('.close_screen').css("width","100%");
 
