@@ -34,9 +34,6 @@
 		  src: url(fonts/notepad.TTF);
 		}
 
-
-
-
 		.wrapper{
 			position:fixed;
 			width: 99%;
@@ -47,6 +44,13 @@
 			display: flex;
     		justify-content: space-around;
     		caret-color: crimson;
+			transition: height, 1s;
+    		
+		}
+
+		.wrapper.editmode{
+			height:100%;
+			width: 100%;
 		}
 
 		.time{
@@ -74,11 +78,18 @@
 		    padding-top: 50px;		    
 		    padding-left: 45px;
     		padding-right: 35px;
-    		overflow-y: hidden;
+    		/*overflow-y: hidden;*/
     		line-height: 40px;
+    		
     		
 
 		    /* transition: box-shadow, 0.5s; */
+		}
+
+		textarea.editmode {
+		    overflow-y: inherit;
+		    font-size: 16px;
+		    transition: font-size, 1s;
 		}
 
 		textarea.dark_theme {
@@ -109,8 +120,8 @@
 		ul{
 			list-style-type: none;
 			position: fixed;
-			bottom:50px;
-			right:50px;
+			bottom:0;
+			right:15px;
 		}
 
 		li{
@@ -238,6 +249,10 @@
 
 		  }
 
+		  .icon_selected{
+		  	color:grey;
+		  }
+
 		  .dark_theme_inv{
 		  	background-color: #fff;
 		  	color: #000000;
@@ -261,12 +276,12 @@
 		  }
 
 		  ul.ul_two.hid_ul{
-		  	right: -375px;
+		  	right: -425px;
 		  	transition: right, 0.5s;
 		  }
 
 		  ul.ul_two.show_ul{
-		  	right: 50px;
+		  	right: 15px;
 		  	transition: right, 0.5s;
 		  }
 
@@ -353,9 +368,32 @@
 	}
 
 	ul.ul_two {
-    bottom: 120px;
+    bottom: 60px;
     right: 130px;
 }
+
+	::-webkit-scrollbar-button {
+	    background-color:transparent;
+	}
+
+	::-webkit-scrollbar {
+	  width: 8px;               /* width of the entire scrollbar */
+	}
+
+	::-webkit-scrollbar-track {
+	  background: #212121;        /* color of the tracking area */
+	}
+
+	::-webkit-scrollbar-thumb {
+	  background-color: #000;    /* color of the scroll thumb */
+	  border-radius: 10px;       /* roundness of the scroll thumb */
+	  border: 1px solid #212121;  /* creates padding around scroll thumb */
+	}
+
+	::-webkit-scrollbar-corner{
+	    background-color:#212121;
+	}
+
 		  
 @media (max-width: 600px){
 
@@ -451,7 +489,8 @@
 <li class="time_click mob_hide_always"><i class="fas fa-solid fa-clock fa-2x"></i></li>
 <li id="count_it" class="mob_hide_always"><i class="fas fa-solid fa-won-sign fa-2x"></i></li>	
 <li id="clear_it"><i class="fas fa-solid fa-trash fa-2x"></i></li>	
-<li id="font_change" class="mob_hide_always"><i class="fas fa-solid fa-pen fa-2x"></i></li>
+<li id="font_change" class="mob_hide_always"><i class="fas fa-solid fa-pen-nib fa-2x"></i></li>
+<li id="edit_mode" class="mob_hide_always blinking-set blinking"><i class="fas fa-solid fa-text-height fa-2x"></i></li>
 <li class="mail_to kindle hideable_icon hid_icon mob_hide_always"><i class="fas fa-envelope fa-2x"></i></li>
 <li id="dwn-btn"><i class="fas fa-solid fa-arrow-down fa-2x"></i></li>
 <li id="theme_change"><i class="fas fa-solid fa-palette fa-2x"></i></li>
@@ -480,6 +519,27 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
+
+$('#edit_mode').on("click", function(){
+
+	if ($('.wrapper').hasClass("editmode")){
+
+		$(this).removeClass("icon_selected")
+		$('.wrapper').removeClass("editmode")
+		$('textarea').removeClass("editmode")
+
+	}
+	else{
+
+		$('textarea').removeAttr("style");
+		$(this).addClass("icon_selected")
+		$('.wrapper').addClass("editmode")
+		$('textarea').addClass("editmode")
+	}
+
+});
+
+
 
 var y = $(window).scrollTop();  //your current y position on the page
 $(window).scrollTop(y+150);
