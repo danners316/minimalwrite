@@ -72,13 +72,13 @@
 		textarea{
 			width: 100%;
 		    font-family: courier;		    
-		    font-size: 22px;
+		    font-size: 20px;
 		    text-align: left;
 		    border: none;		    
 		    padding-top: 50px;		    
 		    padding-left: 45px;
     		padding-right: 35px;
-    		/*overflow-y: hidden;*/
+    		overflow-y: hidden;
     		line-height: 40px;
     		
     		
@@ -94,7 +94,21 @@
 
 		textarea.dark_theme {
 		    background-color: #212121;
+		    height: 80px;
 		}
+
+		.charcoal{background-color:#212121;}
+		.green{background-color:#001919;}
+		.burgundy{background-color: #820024;}
+		.black{background-color: #000;}
+		.blue{background-color: #152238}
+		.white{background-color: #fff; color: #212121;}
+
+		textarea.dark_theme.charcoal{background-color:#212121;}
+		textarea.dark_theme.green{background-color:#001919;}
+		textarea.dark_theme.blue{background-color: #152238}
+		textarea.dark_theme.black{background-color: #000;}
+		textarea.dark_theme.white{background-color: #fff; color: #212121;}
 
 		.lines {
 		    
@@ -179,7 +193,7 @@
     	.dark_theme .title input[type="text"], .dark_theme .title input[type="text"]:focus, .dark_theme .title input[type="text"]:focus-visible {
 		    border: none;
 		    outline: none;
-		    font-size:32px;
+		    font-size:26px;
 			font-family: Mentimun;
 			font-family: Remington;
 		}
@@ -310,9 +324,32 @@
   margin: 0 auto; /* Gives that scrolling effect as the typing happens */
   letter-spacing: .15em; /* Adjust as needed */
   animation: 
-    typing 4.5s steps(42, end),
+    typing 3s steps(25, end),
     blink-caret .75s step-end infinite;
 }
+
+.dark_theme ul.palette {
+    position: fixed;
+    left: 10px;
+    bottom: 10px;
+    margin: 0;
+    padding: 0;
+    transition: left, 0.5s;
+}
+
+.dark_theme ul.palette.palette_hidden{
+	left: -140px;
+}
+
+.dark_theme .palette li {
+    margin: 0;
+}
+
+.dark_theme .color_changer a {
+    padding: 2px 8px;
+    text-decoration: none;
+}
+
 
 /* The typing effect */
 @keyframes typing {
@@ -466,7 +503,7 @@
 <div class="Cloak">
 
 <div class="typewriter">
-  <h1 class="dektop_title">Welcome To Minimalwriter. Click to Begin.</h1>
+  <h1 class="dektop_title">Welcome To Minimalwriter</h1>
   <h1 class="mobile_title">Minimalwriter</h1>
 </div>
 
@@ -486,9 +523,9 @@
 <!-- <li id="bulb_change" class="themes hideable_icon hid_icon"><i class="fas fa-solid fa-lightbulb fa-2x"></i></li>-->
 <!-- <li ><i class="fas fa-solid fa-spell-check fa-2x"></i></li>
 <li class="mail_to hideable_icon hid_icon"><i class="fas fa-tablet fa-2x"></i></li> -->
-<li class="time_click mob_hide_always"><i class="fas fa-solid fa-clock fa-2x"></i></li>
-<li id="count_it" class="mob_hide_always"><i class="fas fa-solid fa-won-sign fa-2x"></i></li>	
 <li id="clear_it"><i class="fas fa-solid fa-trash fa-2x"></i></li>	
+<li class="time_click mob_hide_always"><i class="fas fa-solid fa-clock fa-2x"></i></li>
+<li id="count_it" class="mob_hide_always"><i class="fas fa-solid fa-won-sign fa-2x"></i></li>
 <li id="font_change" class="mob_hide_always"><i class="fas fa-solid fa-pen-nib fa-2x"></i></li>
 <li id="edit_mode" class="mob_hide_always blinking-set blinking"><i class="fas fa-solid fa-text-height fa-2x"></i></li>
 <li class="mail_to kindle hideable_icon hid_icon mob_hide_always"><i class="fas fa-envelope fa-2x"></i></li>
@@ -501,7 +538,16 @@
 <li id="show_hide_icons" class=""><i class="fas fa-solid fa-angle-down fa-3x"></i></li>
 </ul>
 
-<div class="close_screen">
+<ul class="palette">
+	<li class="color_changer"><a class="charcoal" href="#">&nbsp;</a></li>
+	<li class="color_changer"><a class="black" href="#">&nbsp;</a></li>
+	<li class="color_changer"><a class="green" href="#">&nbsp;</a></li>
+	<li class="color_changer"><a class="blue" href="#">&nbsp;</a></li>
+	<li class="color_changer"><a class="white" href="#">&nbsp;</a></li>
+    
+</ul>
+
+<div class="close_screen charcoal">
 
 <div class="close_it">
 	<i class="fas fa-times fa-1x"></i>
@@ -519,6 +565,35 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
+
+$('li.color_changer a').click(function(){
+
+    // Setup
+
+    
+        
+    // Add class="bg_change" as 2nd last class  
+    // Add class="color" as last class
+
+    //finds last class i.e color class
+    var whatColor = $(".close_screen").attr("class").split(" ").pop();
+
+    
+
+    //finds color class of link
+    var linkTo = $(this).attr("class");
+
+    // Prevents double click on Color Link
+    if(whatColor != linkTo){
+
+    $('textarea').addClass(linkTo).removeClass(whatColor);
+    $('.close_screen').addClass(linkTo).removeClass(whatColor);
+
+    
+    }
+
+
+});
 
 $('#edit_mode').on("click", function(){
 
@@ -551,6 +626,8 @@ function hide_icons(){
 	$("ul.ul_two").addClass('hid_ul');
 	$("#show_hide_icons i").css("transform","rotate(270deg)");
 	$('#show_hide_icons').addClass('icons_hid');
+
+	$('ul.palette').addClass('palette_hidden')
 }
 
 function show_icons(){
@@ -559,7 +636,9 @@ function show_icons(){
 	$('ul.ul_two').removeClass('hid_ul');
 	$('ul.ul_two').addClass('show_ul');
 	$("#show_hide_icons i").css("transform","rotate(90deg)");
-	$("#show_hide_icons").removeClass('icons_hid');	
+	$("#show_hide_icons").removeClass('icons_hid');
+
+	$('ul.palette').removeClass('palette_hidden')	
 
 }
 
@@ -793,10 +872,13 @@ inittDarkTheme();
 
 $('#theme_change').click(function(){
 
+	$('ul.palette').toggle();
+
 if ($('body').hasClass('dark_theme')){
 
 	$("body, .title, textarea, .title input[type='text'], .title input[type='text']:focus, .title input[type='text']:focus-visible").removeClass("dark_theme");
 	$("textarea").addClass("lines");
+
 	
 }
 else{
@@ -943,7 +1025,7 @@ var rand= Math.random() * illysNum;
 rand = Math.floor(rand);
 var illy = illys[rand];
 
-const adj1s = ["heavy", "milky", "silent", "still", "raging", "deathly", "muted", "warm", "cold", "blue", "white", "black", "feared", "thunderous", "grave", "wet", "sombre", "happy", "modest", "charming", "nervous", "dreadful"]
+const adj1s = ["heavy", "milky", "silent", "still", "raging", "deathly", "muted", "warm", "cold", "red", "green", "blue", "grey", "white", "black", "feared", "thunderous", "grave", "wet", "sombre", "happy", "modest", "charming", "nervous", "dreadful"]
 var adj1snum = adj1s.length;
 var rand = Math.random() * adj1snum;
 rand = Math.floor(rand);
@@ -961,7 +1043,7 @@ var rand = Math.random() * nounsActedsNum;
 rand = Math.floor(rand);
 var nounsActed = nounsActeds[rand];
 
-const nounsActed1s = ["dust", "maze", "colour", "spite", "anger", "wealth", "mist", "river", "smoke", "fog", "tree", "forest", "wood", "beach", "sand", "smog", "bird", "beast", "eye", "day", "expectation", "fear", "situation", "response", "future", "past", "divinity", "funeral", "birth", "dream"]
+const nounsActed1s = ["dust", "maze", "colour", "spite", "anger", "wealth", "mist", "river", "smoke", "fog", "tree", "forest", "wood", "beach", "sand", "smog", "bird", "beast", "eye", "day", "expectation", "fear", "situation", "response", "future", "past", "divinity", "funeral", "birth", "dream", "problem", "road", "parade", "victim", "mess", "happening", "roar", "question", "smell", "breath"]
 var nounsActed1sNum = nounsActed1s.length;
 var rand = Math.random() * nounsActed1sNum;
 rand = Math.floor(rand);
@@ -982,11 +1064,14 @@ var sentence = sentences[rand];
 
 $("textarea").attr("placeholder",sentence);
 
+
 //
 
 var titlePlace = "A " + adj1 + " " + nounsActed1;
 
 $(".title input").attr("placeholder",titlePlace);
+
+//$(".dektop_title").text(sentence);
 
 }
 
