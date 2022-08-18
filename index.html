@@ -25,6 +25,16 @@
 		}
 
 		@font-face {
+		  font-family: Bodonitown;
+		  src: url(fonts/Bodonitown.ttf);
+		}
+
+		@font-face {
+		  font-family: Montserrat;
+		  src: url(fonts/Montserrat.ttf);
+		}
+
+		@font-face {
 		  font-family: Remington;
 		  src: url(fonts/remington-noiseless.ttf);
 		}
@@ -33,6 +43,24 @@
 		  font-family: Notepad;
 		  src: url(fonts/notepad.TTF);
 		}
+
+		.font_change_1{
+			font-family: Bodonitown;
+    		letter-spacing: 4px;
+    		font-size: 20px;
+		}
+
+		.font_change_2{
+		font-family: 'Montserrat';
+	    letter-spacing: 2px;
+	    font-size: 18px;
+		}
+
+		/*
+		body{
+		background-color: #FAF9F6;
+		}
+		*/
 
 		.wrapper{
 			position:fixed;
@@ -104,12 +132,12 @@
 		.green{background-color:#001919;}
 		.burgundy{background-color: #820024;}
 		.black{background-color: #000;}
-		.blue{background-color: #152238}
+		.blue{background-color: #040720}
 		.white{background-color: #fff; color: #212121;}
 
 		textarea.dark_theme.charcoal{background-color:#212121;}
 		textarea.dark_theme.green{background-color:#001919;}
-		textarea.dark_theme.blue{background-color: #152238}
+		textarea.dark_theme.blue{background-color: #040720}
 		textarea.dark_theme.black{background-color: #000;}
 		textarea.dark_theme.white{background-color: #fff; color: #212121;}
 
@@ -199,6 +227,8 @@
 		    font-size:26px;
 			font-family: Mentimun;
 			font-family: Remington;
+			letter-spacing: 1px;
+			width: 900px;
 		}
 
 		.title input[type="text"], .title input[type="text"]:focus, .title input[type="text"]:focus-visible {
@@ -206,12 +236,16 @@
 		    outline: none;
 		    font-size:32px;
 			font-family: Notepad;
+			
 		}
+
+
     
 		.title{
 			position: absolute;
 			top:50px;
 			left:45px;
+			background-color: #FAF9F6;
 		}
 
 		input[type="number"] {
@@ -351,6 +385,10 @@
 .dark_theme .color_changer a {
     padding: 2px 8px;
     text-decoration: none;
+}
+
+#bulb_change{
+	display: none;
 }
 
 
@@ -523,7 +561,7 @@
 
 <ul class="ul_two hid_ul">
 <!-- <li id="check_it" class=""><i class="fas fa-solid fa-spell-check fa-2x"></i></li>-->
-<!-- <li id="bulb_change" class="themes hideable_icon hid_icon"><i class="fas fa-solid fa-lightbulb fa-2x"></i></li>-->
+<li id="bulb_change" class="themes hideable_icon hid_icon"><i class="fas fa-solid fa-lightbulb fa-2x"></i></li>
 <!-- <li ><i class="fas fa-solid fa-spell-check fa-2x"></i></li>
 <li class="mail_to hideable_icon hid_icon"><i class="fas fa-tablet fa-2x"></i></li> -->
 <li id="clear_it"><i class="fas fa-solid fa-trash fa-2x"></i></li>	
@@ -568,6 +606,18 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
+
+$(document).ready(function() {
+
+var editmode = false;
+
+if (editmode === true){
+
+	$(".Cloak").hide();
+	$("#bulb_change").show();
+}
+
+});
 
 $('li.color_changer a').click(function(){
 
@@ -956,7 +1006,7 @@ function randomWord2() {
 	rand = Math.floor(rand);
 	//Find that number of the array	and assign that item as word	
 	var word = arr[rand];
-	console.log(word);
+	// console.log(word);
 
 	}
 
@@ -965,9 +1015,9 @@ function randomWord2() {
 var arrays = [
 //Open Arrays
 //Acting Verbs 
-["man", "girl", "woman", "child", "animal", "boy", "actors", "cowards", "holy men", "law", "gentlemen", "women", "men", "law makers", "shadow", "dead", "living", "down trodden", "unholy", "weary", "widow", "priest", "feeling", "sound", "cows", "pigs", "beast"],
+["man", "girl", "woman", "child", "animal", "boy", "cowards", "holy men", "law", "gentlemen", "women", "men", "law makers", "shadow", "dead", "living", "down trodden", "unholy", "weary", "widow", "priest", "feeling", "sound", "cows", "pigs", "beast", "flowers", "trees"],
 // Verbs Past
-["sailed", "ran", "saved", "searched", "chilled", "buried", "warned", "looked", "glided", "postured", "shot", "heard", "incited", "pondered", "talked", "sang", "spoke", "waved", "walked", "danced", "grimaced", "enraged", "criminalised", "vanished", "dissapeared"],
+["sailed", "ran", "saved", "searched", "chilled", "buried", "warned", "looked", "glided", "postured", "shot", "heard", "incited", "pondered", "talked", "sang", "spoke", "waved", "walked", "danced", "grimaced", "enraged", "criminalised", "vanished", "dissapeared", "ruined", "held", "serenaded", "beaten", "healed", "rejoiced", "heralded", "celebrated", "entertained", "incanted", "worshipped", "reborn", "unheard", ""],
 // Preposition
 ["towards", "without", "with", "away from", "in the midst of", "because of", "by", "like", "to", "behind", "in front of", "at the mercy of", "in", "of", "on", "at", "at the might of"]
 //Close Arrays
@@ -980,97 +1030,141 @@ function randomWord() {
 
 //function shuffle() {
 
-const nounsActors = ["man", "girl", "woman", "child", "animal", "boy", "actors", "cowards", "holy men", "law", "gentlemen", "women", "men", "law makers", "shadow", "dead", "living", "unholy", "weary", "widow", "priest", "feeling", "sound", "cows", "pigs", "beast"]
-var nounsActorsNum = nounsActors.length;
-var rand = Math.random() * nounsActorsNum;
+const theyNouns = ["men","gravediggers","workers","girls", "women", "children", "animals", "boys", "actors", "cowards", "holy men", "police", "gentlemen", "law makers", "shadows", "dead", "living", "unholy", "weary", "widowed", "priests", "cows", "pigs", "beasts"]
+var theyNounsNum = theyNouns.length;
+var rand = Math.random() * theyNounsNum;
 rand = Math.floor(rand);
-var nounsActor = nounsActors[rand];
+var theyNoun = theyNouns[rand];
 
-const ofVerbs = ["warned", "had heard", "talked", "sang", "spoke"]
-var verbsNum = ofVerbs.length;
+const heNouns = ["man","gravedigger","barman","patron","child", "animal", "boy", "priest", "coward", "cleric", "policeman", "hero", "villain", "sinner", "bishop", "farmer", "sherif", "gunslinger", "cow", "pig", "beast","brute"]
+var heNounsNum = heNouns.length;
+var rand = Math.random() * heNounsNum;
+rand = Math.floor(rand);
+var heNoun = heNouns[rand];
+
+const verbPreps = ["talked of", "girl", "woman", "child", "animal", "boy", "actors", "cowards", "holy men", "law", "gentlemen", "women", "men", "law makers", "shadow", "dead", "living", "unholy", "weary", "widow", "priest", "feeling", "sound", "cows", "pigs", "beast"]
+var verbPrepsNum = verbPreps.length;
+var rand = Math.random() * verbPrepsNum;
+rand = Math.floor(rand);
+var verbPrep = verbPreps[rand];
+
+const verbFors = ["asked","cried","called","searched","sang", "begged","pleaded"]
+var verbsNum = verbFors.length;
 var rand= Math.random() * verbsNum;
 rand = Math.floor(rand);
-var ofVerb = ofVerbs[rand];
+var verbFor = verbFors[rand];
 
-const motionVerbs = ["sailed", "ran", "looked", "glided", "postured", "shot", "sang", "spoke", "waved", "walked", "danced"]
-var verbsNum = motionVerbs.length;
+const verbOfs = ["knew","thought","told","spoke","warned"]
+var verbsNum = verbOfs.length;
 var rand= Math.random() * verbsNum;
 rand = Math.floor(rand);
-var motionVerb = motionVerbs[rand];
+var verbOf = verbOfs[rand];
 
-const prep1s = ["towards", "without", "with", "away from", "in the midst of", "because of", "by", "like", "to", "behind", "in front of", "at the mercy of", "into", "in", "of", "on", "at", "at the might of"]
-var prep1snum = prep1s.length;
-var rand3 = Math.random() * prep1snum;
-rand3 = Math.floor(rand3);
-prep1 = prep1s[rand3];
+const verbTos = ["ran","hurried","walked","ambled","limped","sauntered","scampered","scurried","staggered","tiptoed","swayed"]
+var verbsNum = verbTos.length;
+var rand= Math.random() * verbsNum;
+rand = Math.floor(rand);
+var verbTo = verbTos[rand];
 
-const motionPreps = ["in", "towards", "into", "around", "before", "across"]
+const endVerbs = ["cried","screamed","begged","slept","knelt","prayed","died","wept"]
+var verbsNum = endVerbs.length;
+var rand= Math.random() * verbsNum;
+rand = Math.floor(rand);
+var endVerb = endVerbs[rand];
+
+const motionPreps = ["towards","into","to","around","before","across","away from","in the midst of"]
 var verbsNum = motionPreps.length;
 var rand= Math.random() * verbsNum;
 rand = Math.floor(rand);
 var motionPrep = motionPreps[rand];
 
-const toNouns = ["water", "sea", "bridge", "cliff", "fire", "smoke"]
+const toNouns = ["sea", "fire", "smoke", "danger","trouble","gunmen","battle","tyrants","horsemen","thieves","dead","witches","gentry","beggars","field","farm","forest","trees","beach","funeral","road", "parade"]
 var toNounsNum = toNouns.length;
 var rand = Math.random() * toNounsNum;
 rand = Math.floor(rand);
 var toNoun = toNouns[rand];
 
-const verb1s = ["sailed", "ran", "saved", "searched", "chilled", "buried", "warned", "looked", "glided", "postured", "shot", "heard", "incited", "pondered", "talked", "sang", "spoke", "waved", "walked", "danced", "grimaced", "enraged", "criminalised", "vanished", "dissapeared"]
-var verbsNum = verb1s.length;
+const soloVerbs = ["used","wanted","found","tried","needed","took","touched","knew","buried","worshipped","decriminalised","serenaded","celebrated","acquired","admired","appreciated","attracted","avoided","believed","criticised","investigated","justified", "left","lost","craved"]
+var verbsNum = soloVerbs.length;
 var rand= Math.random() * verbsNum;
 rand = Math.floor(rand);
-var verb1 = verb1s[rand];
+var soloVerb = soloVerbs[rand];
 
-const illys = ["easily", "silently", "brazenly"]
-var illysNum = illys.length;
-var rand= Math.random() * illysNum;
+const adjs = ["courageous", "colorful", "burdened", "enraged", "brutal", "clumsy", "bitter", "arrogant", "ashamed", "amiable", "dead", "lonely", "sly","cruel","gentle","filthy","deceitful","depraved","determined","distraught","elegant","drab","foolish","grieving","handsome","helpless","helpful","high","hollow","hungry","jealous","jolly","joyous","pompous","pleasant","petty","oblivious","odd","obedient","nutty","nervous","naughty","mortified","muddy","mistaken","perplexed","perfect","nonchalant","mysterious","moody","minute","kind","lazy","lively","livid","loose","lucky","macho","magnificient","melancholy","melted","precious","jumpy","kind","maniacal","moody","mortified","motionless","nasty","nonsensical","odd","old-fashioned","outrageous","panicky","prickly","proud","puny","quaint","quizzical","ratty","reassured","relieved","repulsive","robust","rotten","rotund","rough","sarcastic","selfish","shaggy","shaky","shallow","sharp","short","silly","skinny","slimy","slippery","small","smiling","smooth","smug","solid","sore","sour","splendid","spotless","square","stale","steady","straight","strange","strong","stunning","successful","superficial","superior","swanky","tender","tense","terrible","testy","thankful","thick","thoughtful","thoughtless","tricky","trite","troubled","unsightly","upset","uptight","vexed","victorious","virtuous","vivacious","vivid","wacky","weary","whimsical","wicked","witty","wobbly","wonderful","worried","zany","zealous","zippy","heavy", "silent", "still", "raging", "deathly", "muted", "warm", "cold", "red", "green", "blue", "grey", "white", "black", "feared", "thunderous", "grave", "wet", "sombre", "happy", "modest", "charming", "nervous", "dreadful"]
+var adjsnum = adjs.length;
+var rand = Math.random() * adjsnum;
 rand = Math.floor(rand);
-var illy = illys[rand];
+var adj = adjs[rand];
 
-const adj1s = ["heavy", "milky", "silent", "still", "raging", "deathly", "muted", "warm", "cold", "red", "green", "blue", "grey", "white", "black", "feared", "thunderous", "grave", "wet", "sombre", "happy", "modest", "charming", "nervous", "dreadful"]
-var adj1snum = adj1s.length;
-var rand = Math.random() * adj1snum;
-rand = Math.floor(rand);
-var adj1 = adj1s[rand];
-
-const adj2s = ["crass", "ambiguous", "burdened", "enraged", "brutal", "opinonated", "chilvarous", "grave", "scandalous", "chivalrous", "gruesome", "lonely", "deadly", "good mannered"]
-var adj2snum = adj2s.length;
-var rand = Math.random() * adj2snum;
-rand = Math.floor(rand);
-var adj2 = adj2s[rand];
-
-const nounsActeds = ["water", "knowledge", "idea", "question", "bravado", "silence", "truth", "rhythm", "sentence", "damage", "sea", "council", "land", "tribe", "boundary", "sea", "growth", "rivalry", "bastards", "crooks", "angels", "tyrants", "kings", "lunatics", "apostles", "followers", "gypsies"]
+const nounsActeds = ["knowledge", "idea", "question", "bravado", "silence", "truth", "rhythm", "damage", "sea", "council", "land", "tribe", "sea", "growth", "rivalry", "crooks", "angels", "tyrants", "kings", "lunatics", "apostles", "followers", "gypsies", "bridge"]
 var nounsActedsNum = nounsActeds.length;
 var rand = Math.random() * nounsActedsNum;
 rand = Math.floor(rand);
 var nounsActed = nounsActeds[rand];
 
-const nounsActed1s = ["dust", "maze", "colour", "spite", "anger", "wealth", "mist", "river", "smoke", "fog", "tree", "forest", "wood", "beach", "sand", "smog", "bird", "beast", "eye", "day", "expectation", "fear", "situation", "response", "future", "past", "divinity", "funeral", "birth", "dream", "problem", "road", "parade", "victim", "mess", "happening", "roar", "question", "smell", "breath"]
-var nounsActed1sNum = nounsActed1s.length;
-var rand = Math.random() * nounsActed1sNum;
+const forNouns = ["forgiveness","mercy","strength","bravery","cowardice","forgiveness","desire","shame","rebellion","retribution","brutality","water","money","wealth","food","honor","loyalty"]
+var forNounsNum = forNouns.length;
+var rand = Math.random() * forNounsNum;
 rand = Math.floor(rand);
-var nounsActed1 = nounsActed1s[rand];
+var forNoun = forNouns[rand];
+
+const blankNouns = ["dust", "colour", "spite", "anger", "wealth", "mist", "smoke", "fog", "sand", "day", "night", "expectation", "fear", "divinity", "birth", "smell", "breath", "feeling", "sound", "life", "tree", "forest", "wood",  "bird", "beast","situation", "response", "future", "past", "dream", "problem", "victim", "mess", "roar", "question"]
+var blankNounsNum = blankNouns.length;
+var rand = Math.random() * blankNounsNum;
+rand = Math.floor(rand);
+var blankNoun = blankNouns[rand];
+
+const seeNouns = ["dust", "mist", "smoke", "fog", "wind", "rain"]
+var seeNounsNum = seeNouns.length;
+var rand = Math.random() * seeNounsNum;
+rand = Math.floor(rand);
+var seeNoun = seeNouns[rand];
+
+const seeAdjs = ["thick","heavy","feint","abundant","raging","problematic","violent","fierce","worrying"]
+var seeAdjsNum = seeAdjs.length;
+var rand = Math.random() * seeAdjsNum;
+rand = Math.floor(rand);
+var seeAdj = seeAdjs[rand];
+
+const timeNouns = ["day", "night", "fire", "darkness", "light"]
+var timeNounsNum = timeNouns.length;
+var rand = Math.random() * timeNounsNum;
+rand = Math.floor(rand);
+var timeNoun = timeNouns[rand];
+
+const timeAdjs = ["fading","silent","quiet","waning","calm","beautiful","alive","peaceful","splendid"]
+var timeAdjsNum = timeAdjs.length;
+var rand = Math.random() * timeAdjsNum;
+rand = Math.floor(rand);
+var timeAdj = timeAdjs[rand];
+
 
 //}
+var sentence1 = "The " + theyNoun + " " + verbFor + " for " + forNoun + ". They " + verbTo + " " + motionPrep + " the " + toNoun + " and " + endVerb + ". The " + seeNoun + " was " + seeAdj + ". The " + timeNoun + " was " + timeAdj + ".";
+var sentence2 = "The " + heNoun + " " + verbTo + " " + motionPrep + " the " + toNoun + ". He " + soloVerb + " the " + nounsActed + ". He " + endVerb + ".";
+var sentence3 = "The " + theyNoun + " " + soloVerb + " the " + nounsActed + ".";
+var sentence4 = "The " + theyNoun + " " + verbOf + " of the " + toNoun + ".";
+var sentence5 = "The " + theyNoun + " " + verbFor + " for " + forNoun + ". They " + verbTo + " " + motionPrep + " the " + toNoun;
 
 
-var sentence3 = "The " + nounsActor + " " + verb1 + " " + prep1 + " the " + adj2 + " " + nounsActed + ".";
-var sentence4 = "The " + nounsActor + " " + motionVerb + " " + motionPrep + " the " + toNoun + ".";
-var sentence1 = "The " + nounsActor + " " + ofVerb + " of the " + nounsActed + ".";
 
-var sentences = [sentence1, sentence3, sentence4]
+var sentences = [sentence1, sentence3, sentence4, sentence2]
 var sentencesnum = sentences.length;
 var rand = Math.random() * sentencesnum;
 rand = Math.floor(rand);
+console.log(rand + 1);
 var sentence = sentences[rand];
+//var sentence = sentence2;
+
+
 
 $("textarea").attr("placeholder",sentence);
 
 
 //
 
-var titlePlace = "A " + adj1 + " " + nounsActed1;
+//var titlePlace2 = "A " + adj + " " + blankNoun;
+var titlePlace = "The " + adj + " " + theyNoun;
 
 $(".title input").attr("placeholder",titlePlace);
 
