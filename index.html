@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Minimalwriter</title>
+	<title>Typewriter</title>
 	<link rel="icon" type="image/x-icon" href="circled-m.png">
 	<!-- ViewPort -->
-	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- FA -->
     <script src="https://kit.fontawesome.com/34c020cde1.js" crossorigin="anonymous"></script>
 
@@ -96,9 +96,10 @@
 		.mssgbox {
 		    position: fixed;
 		    bottom: 50px;
-		    left: 50px;
+		    left: 70px;
 		    font-size: 42px;
 		    font-family: Mentimun;
+		    z-index:99;
 		}
 
 		textarea{
@@ -113,6 +114,7 @@
     		padding-right: 35px;
     		overflow-y: hidden;
     		line-height: 40px;
+    		letter-spacing: 0.1em;
     		
     		
 
@@ -176,6 +178,32 @@
 			cursor: pointer;
 		}
 
+		ul.sending {
+		    position: absolute;
+		    top: -100px;
+		    right: 50px;
+		    transition: top, 0.5s;
+		    height: 50px;
+		    border: 2px solid crimson;
+		    margin: 0;
+		    padding: 10px;
+		    border-radius: 10px;
+		}
+
+		ul.sending.open {
+			top: 50px;
+		}
+
+		input.email_prompt {
+		    padding: 12px 6px;
+		    border: 1px solid #fff;
+		    border-radius: 5px;
+		    position: relative;
+		    bottom: 13px;
+		    font-size: 16px;
+    		font-family: 'Roboto Mono',monospace;
+		}
+
 		.prompt_box {
 		    width: 200px;
 		    height: 200px;
@@ -186,6 +214,8 @@
 		    right: 100px;
 		    transition: top, 0.7s;
 		    font-family: Mentimun;
+		    background-color: crimson;
+    		opacity: 0.9;
 		}
 
 		.prompt_box.show_prompt {
@@ -239,6 +269,15 @@
 
 		.fa-angle-down{
 			margin-left: 25px;
+		}
+
+		i.fas.fa-envelope.fa-2x {
+		    font-size: 3em;
+		    transition: color, 1s;
+		}
+
+		i.fas.fa-envelope.fa-2x:hover {
+			color: crimson;
 		}
 
     	.close_it{
@@ -387,9 +426,9 @@
   border-right: .15em solid orange; /* The typwriter cursor */
   white-space: nowrap; /* Keeps the content on a single line */
   margin: 0 auto; /* Gives that scrolling effect as the typing happens */
-  letter-spacing: .15em; /* Adjust as needed */
+  letter-spacing: .25em; /* Adjust as needed */
   animation: 
-    typing 3s steps(25, end),
+    typing 2.5s steps(32, end),
     blink-caret .75s step-end infinite;
 }
 
@@ -500,11 +539,25 @@
 	    background-color:#212121;
 	}
 
+.dark_theme .mob_hide_always{display: inline;}
+
+.light_hide{
+	display: none;
+}
+
 		  
 @media (max-width: 600px){
 
+	.title{
+		display: none;
+	}
+
 	.wrapper {
-    height: 60%;
+    height: 100%;
+	}
+
+	.dark_theme .wrapper {
+    height: 100%;
 	}
 
 	.fa-angle-down {
@@ -512,7 +565,7 @@
 	}
 
 	li {
-    margin-left: 10px;
+    margin-left: 20px;
 	}
 
 	.dektop_title{
@@ -527,36 +580,53 @@
 	    font-size: 24px;
 	}
 
-	textarea {
-    font-size: 20px;
+	.fa-2x{
+    font-size: 2.2em;
+	}
+
+	.fa-3x{
+    font-size: 3.2em;
+	}
+
+	textarea, .font_2 {
+    font-size: 14px;
+    font-family: 'Roboto Mono',monospace;
 	}
 
 	ul {
     bottom: 0px;
 }
 	ul.ul_two.show_ul {
-    right: 120px;
+    right: 70px;
     transition: right, 0.5s;
     bottom: 10px;
+    z-index: 99;
 	}
 
 	.typewriter h1 {
+	  font-size: 22px;
 	  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
 	  letter-spacing: .20em; /* Adjust as needed */
 	  animation: 
-	    typing 2.5s steps(18, end),
+	    typing 3s steps(28, end),
 	    blink-caret .75s step-end infinite;
+
 	}
 
-	.mob_hide_always{
+	.mob_hide_always, .dark_theme .mob_hide_always{
 		display:none;
 	}
 
 
 }
 
-.mob_hide_always{display: none;}
-.dark_theme .mob_hide_always{display: inline;}
+<!-- Remove 000Webhost Marker -->
+
+img[alt*="000webhost"] {
+    display: none !important;
+}
+
+
 		  
 
 
@@ -575,8 +645,8 @@
 <div class="Cloak">
 
 <div class="typewriter">
-  <h1 class="dektop_title">Welcome To Minimalwriter</h1>
-  <h1 class="mobile_title">Minimalwriter</h1>
+  <h1 class="dektop_title">Welcome to Typewriter.</h1>
+  <h1 class="mobile_title">Welcome to Typewriter.</h1>
 </div>
 
 </div></div>
@@ -603,15 +673,19 @@
 <!-- <li id="bulb_change" class="themes hideable_icon hid_icon"><i class="fas fa-solid fa-lightbulb fa-2x"></i></li> -->
 <!-- <li ><i class="fas fa-solid fa-spell-check fa-2x"></i></li>-->
 <li id="open_clear_it"><i class="fas fa-solid fa-trash fa-2x"></i></li>
-<li id="font_change" class=""><i class="fas fa-solid fa-pen-nib fa-2x"></i></li>	
+<li id="font_change" class="mob_hide_always"><i class="fas fa-solid fa-pen-nib fa-2x"></i></li>	
 <li class="time_click mob_hide_always"><i class="fas fa-solid fa-clock fa-2x"></i></li>
 <li id="count_it" class="mob_hide_always"><i class="fas fa-solid fa-won-sign fa-2x"></i></li>
-<li id="edit_mode" class="mob_hide_always blinking-set blinking"><i class="fas fa-solid fa-text-height fa-2x"></i></li>
-<li class="mail_to kindle hideable_icon hid_icon mob_hide_always"><i class="fas fa-tablet fa-2x"></i></li>
-<li class="mail_to hideable_icon hid_icon mob_hide_always"><i class="fas fa-envelope fa-2x"></i></li>
-<li id="dwn-btn" class="mob_hide_always"><i class="fas fa-solid fa-arrow-down fa-2x "></i></li>
+<li id="edit_mode" class="mob_hide_always blinking-set blinking light_hide"><i class="fas fa-solid fa-text-height fa-2x"></i></li>
+<li class="send_to hideable_icon hid_icon mob_hide_always"><i class="fas fa-paper-plane fa-2x"></i></li>
+<li id="dwn-btn" class=""><i class="fas fa-solid fa-arrow-down fa-2x "></i></li>
 <li id="theme_change"><i class="fas fa-solid fa-palette fa-2x"></i></li>
 
+</ul>
+
+<ul class="sending">
+<input class="email_prompt" type="text" placeholder="daniel.reynolds7a_sendto@kindle.com" size="40">
+<li class="mail_to hideable_icon hid_icon mob_hide_always"><i class="fas fa-envelope fa-2x"></i></li>
 </ul>
 
 <ul>
@@ -619,11 +693,11 @@
 </ul>
 
 <ul class="palette">
-	<li class="color_changer"><a class="charcoal" href="#">&nbsp;</a></li>
-	<li class="color_changer"><a class="black" href="#">&nbsp;</a></li>
-	<li class="color_changer"><a class="green" href="#">&nbsp;</a></li>
-	<li class="color_changer"><a class="blue" href="#">&nbsp;</a></li>
-	<li class="color_changer"><a class="white" href="#">&nbsp;</a></li>
+	<li class="color_changer mob_hide_always"><a class="charcoal" href="#">&nbsp;</a></li>
+	<li class="color_changer mob_hide_always"><a class="black" href="#">&nbsp;</a></li>
+	<li class="color_changer mob_hide_always"><a class="green" href="#">&nbsp;</a></li>
+	<li class="color_changer mob_hide_always"><a class="blue" href="#">&nbsp;</a></li>
+	<li class="color_changer mob_hide_always"><a class="white" href="#">&nbsp;</a></li>
     
 </ul>
 
@@ -644,10 +718,19 @@
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<!-- <script type="text/javascript" src="wordGenSimple.js"></script> -->
+<script type="text/javascript" src="wordGenSimple.js"></script>
 <script type="text/javascript">
 
+	if ($("textarea").hasClass("lines")){
+
+		alert("Yis");
+
+	}
+
 $(document).ready(function() {
+
+// Remove 000Webhost Image
+$("img").attr("src", "https://cdn.000webhost.com/000webhost/logo/footer-powered-by-000webhost-white2.png").hide();
 
 var editmode = false;
 
@@ -1023,18 +1106,37 @@ else{
 
 // Mailto 
 
+$('.send_to').click(function(){
+
+	if ($('.sending').hasClass("open")){
+
+		$('.sending').removeClass("open");
+
+	}
+
+	else{
+		$('.sending').addClass("open");
+	}
+	
+
+	
+
+
+});
+
 $('.mail_to').click(function(){
 
 var text = $("#text-val").val();
 var textTitle = $(".title input").val();
+var email= $('.email_prompt').val();
 
 if ($(this).hasClass('kindle'))
 {
-var email = "daniel.reynolds7a_sendto@kindle.com";
+//var email = "daniel.reynolds7a_sendto@kindle.com";
 var link_generate = "mailto:" + email + "&subject=" + textTitle;
 }
 else{
-var email = "daniel.reynolds7a@gmail.com";
+//var email = "daniel.reynolds7a@gmail.com";
 var link_generate = "mailto:" + email + "&subject=" + textTitle + "&body=" + text;
 }
 
