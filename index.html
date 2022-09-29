@@ -25,16 +25,6 @@
 		}
 
 		@font-face {
-		  font-family: Bodonitown;
-		  src: url(fonts/Bodonitown.ttf);
-		}
-
-		@font-face {
-		  font-family: Montserrat;
-		  src: url(fonts/Montserrat.ttf);
-		}
-
-		@font-face {
 		  font-family: Remington;
 		  src: url(fonts/remington-noiseless.ttf);
 		}
@@ -44,17 +34,12 @@
 		  src: url(fonts/notepad.TTF);
 		}
 
-		.font_change_1{
-			font-family: Bodonitown;
-    		letter-spacing: 4px;
-    		font-size: 20px;
+		@font-face {
+		  font-family: School;
+		  src: url(fonts/back-to-school.OTF);
 		}
 
-		.font_change_2{
-		font-family: 'Montserrat';
-	    letter-spacing: 2px;
-	    font-size: 18px;
-		}
+		
 
 		/*
 		body{
@@ -91,6 +76,7 @@
 			top:50px;
 			font-size:32px;
 			font-family: Mentimun;
+			z-index:99;
 		}
 
 		.mssgbox {
@@ -320,7 +306,7 @@
 		    border: none;
 		    outline: none;
 		    font-size:24px;
-			font-family: Notepad;
+			font-family: School;
 			
 		}
 
@@ -404,7 +390,7 @@
 		  }
 
 		  .font_2{
-		  	font-family: Notepad;
+		  	font-family: School;
 		  }
 
 		  .end_show, .themes_on{
@@ -687,6 +673,7 @@ img[alt*="000webhost"] {
 </div>
 
 <ul class="ul_two hid_ul">
+<li id="scroll_down"><i class="fas fa-solid fa-download fa-2x"></i></li>
 <li id="open_clear_it"><i class="fas fa-solid fa-trash fa-2x"></i></li>
 <li id="font_change" class="mob_hide_always"><i class="fas fa-solid fa-pen-nib fa-2x"></i></li>
 <li id="font_small" class=""><i class="fas fa-solid fa-font fa-2x"></i></li>	
@@ -784,6 +771,14 @@ $('li.color_changer a').click(function(){
     
     }
 
+
+});
+
+scroll_down
+
+$('#scroll_down').on("click", function(){
+
+	window.scrollBy(0, 100);
 
 });
 
@@ -1037,7 +1032,7 @@ document.querySelector(".submit_timer_number").addEventListener("click", functio
 
 var minute = Math.floor(1000 * 60); 
 	// 60000
-//var testminute = 5000
+var minute = 5000
 
 function CountDownTimeInit() {
 	var countdownFrom  = document.querySelector(".time").innerText;
@@ -1059,7 +1054,7 @@ function CountDownInit() {
 	//$('.close_screen').css("width","100%");
 	document.querySelector('.typewriter h1.dektop_title').innerText = 'Time is Up ... Click to return!';
 	document.querySelector('.typewriter h1.mobile_title').innerText = 'Time is Up!';
-	$('.Cloak').show();
+	$('.Cloak_outer').show();
 	$('.Cloak').css("opacity","1");
 	
 
@@ -1068,7 +1063,7 @@ function CountDownInit() {
 	
 	
 	//$('.end_show').fadeIn();
-	document.querySelector(".time").innerHTML = "<li class='time_click mob_hide_always'><i class='fas fa-solid fa-clock fa-1x' aria-hidden='true'></i></li>"; 
+	//document.querySelector(".time").innerHTML = "<li class='time_click mob_hide_always'><i class='fas fa-solid fa-clock fa-1x' aria-hidden='true'></i></li>"; 
 
 	}, 750);
 
