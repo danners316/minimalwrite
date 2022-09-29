@@ -72,7 +72,7 @@
 			display: flex;
     		justify-content: space-around;
     		caret-color: crimson;
-			transition: height, 1s;
+			transition: height, 0.5s;
     		
 		}
 
@@ -87,7 +87,7 @@
 
 		.time{
 			position:fixed;
-			right:50px;
+			right:20px;
 			top:50px;
 			font-size:32px;
 			font-family: Mentimun;
@@ -128,27 +128,40 @@
 		}
 
 		textarea.dark_theme {
-		    background-color: #212121;
+		    background-color: #000;
+		    border: 1px solid #000;
+    		border-radius: 5px;
 		    overflow: hidden;
+		    width: 80%;
 		}
 
-		.charcoal{background-color:#212121;}
+		.charcoal{background-color:#000000;}
 		.green{background-color:#001919;}
 		.burgundy{background-color: #820024;}
-		.black{background-color: #000;}
+		.black{background-color: #212121;}
 		.blue{background-color: #040720}
 		.white{background-color: #fff; color: #212121;}
 
-		textarea.dark_theme.charcoal{background-color:#212121;}
+		textarea.dark_theme.charcoal{background-color:#000000;}
 		textarea.dark_theme.green{background-color:#001919;}
 		textarea.dark_theme.blue{background-color: #040720}
-		textarea.dark_theme.black{background-color: #000;}
+		textarea.dark_theme.black{background-color: #212121;}
 		textarea.dark_theme.white{background-color: #fff; color: #212121;}
 
 		.lines {
 		    
 		    background-image: url(linesb.png), url(paper.png);
 		    background-repeat: repeat-y, repeat;
+		}
+
+		textarea.small{
+			line-height: 30px;
+		    padding-top: 34px;
+		    font-size: 16px;
+		}
+
+		.lines.small {
+		    background-image: url(linesb-30.png), url(paper.png);
 		}
 
 		textarea:focus-visible {
@@ -165,6 +178,10 @@
 		    color: crimson;
 		}
 
+		.fa-2x {
+		    font-size: 1.7em;
+		}
+
 
 		ul{
 			list-style-type: none;
@@ -175,14 +192,14 @@
 
 		li{
 			display: inline;
-			margin-left:20px;
+			margin-left:8px;
 			cursor: pointer;
 		}
 
 		ul.sending {
 		    position: absolute;
 		    top: -100px;
-		    right: 50px;
+		    right: 150px;
 		    transition: top, 0.5s;
 		    height: 50px;
 		    border: 2px solid crimson;
@@ -192,7 +209,7 @@
 		}
 
 		ul.sending.open {
-			top: 50px;
+			top: 35px;
 		}
 
 		input.email_prompt {
@@ -212,7 +229,7 @@
 		    border-radius: 10px;
 		    position: fixed;
 		    top: -215px;
-		    right: 100px;
+		    right: 150px;
 		    transition: top, 0.7s;
 		    font-family: Mentimun;
 		    background-color: crimson;
@@ -220,7 +237,7 @@
 		}
 
 		.prompt_box.show_prompt {
-		top: 70px;
+		top: 120px;
 		}
 
 		.prompt_box p {
@@ -639,8 +656,8 @@ img[alt*="000webhost"] {
 </head>
 <body>
 
-<div class="title"><input type="text" placeholder="Title"></div>
-<div class="time"></div>
+<div class="title"><input type="text"></div>
+<div class="time"><li class="time_click mob_hide_always"><i class="fas fa-solid fa-clock fa-1x"></i></li></div>
 <div class="mssgbox"></div>
 <div class="Cloak_outer">
 <div class="Cloak">
@@ -653,7 +670,7 @@ img[alt*="000webhost"] {
 </div></div>
 <div class="wrapper">
 
-<textarea class="font_2" name="text-val" id="text-val" rows="4" cols="50" spellcheck="true" placeholder="And then begin ...">
+<textarea class="font_2 small" name="text-val" id="text-val" rows="4" cols="50" spellcheck="true" placeholder="And then begin ...">
 </textarea>		
 
 
@@ -670,17 +687,15 @@ img[alt*="000webhost"] {
 </div>
 
 <ul class="ul_two hid_ul">
-<!-- <li id="check_it" class=""><i class="fas fa-solid fa-spell-check fa-2x"></i></li>-->
-<!-- <li id="bulb_change" class="themes hideable_icon hid_icon"><i class="fas fa-solid fa-lightbulb fa-2x"></i></li> -->
-<!-- <li ><i class="fas fa-solid fa-spell-check fa-2x"></i></li>-->
 <li id="open_clear_it"><i class="fas fa-solid fa-trash fa-2x"></i></li>
-<li id="font_change" class="mob_hide_always"><i class="fas fa-solid fa-pen-nib fa-2x"></i></li>	
-<li class="time_click mob_hide_always"><i class="fas fa-solid fa-clock fa-2x"></i></li>
+<li id="font_change" class="mob_hide_always"><i class="fas fa-solid fa-pen-nib fa-2x"></i></li>
+<li id="font_small" class=""><i class="fas fa-solid fa-font fa-2x"></i></li>	
 <li id="count_it" class="mob_hide_always"><i class="fas fa-solid fa-won-sign fa-2x"></i></li>
-<li id="edit_mode" class="mob_hide_always blinking-set blinking light_hide"><i class="fas fa-solid fa-text-height fa-2x"></i></li>
+<!--<li id="edit_mode" class="mob_hide_always blinking-set blinking light_hide"><i class="fas fa-solid fa-text-height fa-2x"></i></li>-->
 <li class="send_to hideable_icon hid_icon mob_hide_always"><i class="fas fa-paper-plane fa-2x"></i></li>
 <li id="dwn-btn" class=""><i class="fas fa-solid fa-arrow-down fa-2x "></i></li>
 <li id="theme_change"><i class="fas fa-solid fa-palette fa-2x"></i></li>
+
 
 </ul>
 
@@ -960,7 +975,19 @@ function download(filename, text) {
 	document.getElementById("dwn-btn").addEventListener("click", function(){
     // Generate download of hello.txt file with some content
     var text = document.getElementById("text-val").value;
-    var textTitle = document.querySelector(".title input").value;
+
+    var today = new Date();
+	var titlePlace =  ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
+
+    if(document.querySelector(".title input").value == "" ){
+    	var textTitle = titlePlace;
+    }
+    else
+    {
+    	var textTitle = document.querySelector(".title input").value;
+    }
+    
+    
     var filename = textTitle;
     
     download(filename, text);
@@ -1032,7 +1059,7 @@ function CountDownInit() {
 	//$('.close_screen').css("width","100%");
 	document.querySelector('.typewriter h1.dektop_title').innerText = 'Time is Up ... Click to return!';
 	document.querySelector('.typewriter h1.mobile_title').innerText = 'Time is Up!';
-	$('.Cloak_outer').show();
+	$('.Cloak').show();
 	$('.Cloak').css("opacity","1");
 	
 
@@ -1041,7 +1068,7 @@ function CountDownInit() {
 	
 	
 	//$('.end_show').fadeIn();
-	document.querySelector(".time").innerHTML = "<i class='fas fa-solid fa-clock fa-1x'></i>"; 
+	document.querySelector(".time").innerHTML = "<li class='time_click mob_hide_always'><i class='fas fa-solid fa-clock fa-1x' aria-hidden='true'></i></li>"; 
 
 	}, 750);
 
@@ -1061,6 +1088,7 @@ function inittDarkTheme() {
 	$("body, .title, textarea, .title input[type='text'], .title input[type='text']:focus, .title input[type='text']:focus-visible").addClass("dark_theme");
 	$("textarea").removeClass("lines");
 	
+	
 }
 
 inittDarkTheme();
@@ -1072,6 +1100,7 @@ $('#theme_change').click(function(){
 if ($('body').hasClass('dark_theme')){
 
 	$("body, .title, textarea, .title input[type='text'], .title input[type='text']:focus, .title input[type='text']:focus-visible").removeClass("dark_theme");
+
 	$("textarea").addClass("lines");
 
 	
@@ -1082,6 +1111,23 @@ else{
 
 }
 
+
+	 
+});
+
+// Font size Change
+
+$('#font_small').click(function(){
+
+
+
+if ($('textarea').hasClass('small')){
+
+	$("textarea").removeClass("small");
+}
+else{	
+	$("textarea").addClass("small");
+}
 
 	 
 });
