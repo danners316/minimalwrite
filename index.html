@@ -62,7 +62,7 @@
 		}
 
 		.dark_theme .wrapper{
-		height:160px;
+		height:60px;
 		}
 
 		.wrapper.editmode{
@@ -84,7 +84,7 @@
 		    position: fixed;
 		    bottom: 50px;
 		    left: 70px;
-		    font-size: 42px;
+		    font-size: 32px;
 		    font-family: Mentimun;
 		    z-index:99;
 		}
@@ -160,11 +160,7 @@
 
 		.fas{
 			background-color: transparent;
-		}
-
-		.fa-trash {
-		    color: crimson;
-		}
+		}		
 
 		.fa-1x {
 		    font-size: 1em;
@@ -173,15 +169,24 @@
 
 		.fa-2x {
 		    font-size: 1.7em;
-		    opacity: 0.2;
+		    color: #fff;
 		}
+
+		.dark_theme .fa-2x {
+		    color: #fff;
+		}
+
+		.fa-2x.fa-trash {
+		    color: crimson;
+		}
+
 		.fa-3x {
 		    font-size: 2.5em;
 		    opacity: 0.2;
 		}
 
 
-		ul{
+		ul.hider{
 			list-style-type: none;
 			position: fixed;
 			bottom:0;
@@ -192,6 +197,12 @@
 			display: inline;
 			margin-left:8px;
 			cursor: pointer;
+		}
+
+		.context_menu{
+			position: fixed;
+			top: -350px;
+			transition: top, 0.5s;
 		}
 
 		ul.sending {
@@ -210,6 +221,30 @@
 			top: 35px;
 		}
 
+		ul.context_ul {
+		    margin: 0;
+		    padding: 0;
+		}
+
+		ul.context_ul li {
+		    display: block;
+		    padding: 10px;
+		    margin: 0;
+		    width: auto;
+		    border: 3px solid #001919;
+		    border-radius: 5px;
+		    border-collapse: collapse;
+		    text-align: center;
+		    background-color: #000;
+		    margin-bottom: 1px;
+		}
+
+		ul.context_ul li:hover
+		{
+			background-color: #040720;
+			background-color: #001919;
+		}
+
 		input.email_prompt {
 		    padding: 12px 6px;
 		    border: 1px solid #fff;
@@ -223,7 +258,7 @@
 		.prompt_box {
 		    width: 200px;
 		    height: 200px;
-		    border: 5px solid crimson;
+		    border: 5px solid #000;
 		    border-radius: 10px;
 		    position: fixed;
 		    top: -215px;
@@ -231,7 +266,8 @@
 		    transition: top, 0.7s;
 		    font-family: Mentimun;
 		    background-color: crimson;
-    		opacity: 0.9;
+		    opacity: 0.9;
+	    	color: #000;
 		}
 
 		.prompt_box.show_prompt {
@@ -320,7 +356,7 @@
 		    outline: none;
 		    font-size:24px;
 			font-family: School;
-			
+			background-color: transparent;
 		}
 
 
@@ -329,7 +365,6 @@
 			position: absolute;
 			top:50px;
 			left:45px;
-			background-color: #FAF9F6;
 		}
 
 		input[type="number"] {
@@ -424,7 +459,7 @@
 
 .Cloak {
     position: fixed;
-    width: 99%;
+    width: 100%;
     height: 98%;
     margin: 0;
     padding: 25% 0;
@@ -632,11 +667,7 @@
 
 }
 
-<!-- Remove 000Webhost Marker -->
 
-img[alt*="000webhost"] {
-    display: none !important;
-}
 
 
 		  
@@ -672,6 +703,21 @@ img[alt*="000webhost"] {
 
 </div>
 
+<div class="context_menu">
+	
+	<ul class="context_ul">
+
+	<li id="close_context" alt="close" class=""><i class="fas fa-solid fa-angle-up fa-2x "></i></li>
+	<li id="open_clear_it"><i class="fas fa-solid fa-trash fa-2x"></i></li>
+	<li id="count_it" class=""><i class="fas fa-solid fa-equals fa-2x"></i></li>
+	<li class="time_click "><i class="fas fa-solid fa-clock fa-2x"></i></li>
+	<li id="dwn-btn" class=""><i class="fas fa-solid fa-arrow-down fa-2x "></i></li>
+	<li id="theme_change"><i class="fas fa-solid fa-palette fa-2x"></i></li>
+
+	</ul>
+
+</div>
+
 <div class="prompt_box">
 	<p>Delete Text?</p>
 	<ul>
@@ -680,44 +726,46 @@ img[alt*="000webhost"] {
 	</ul>
 </div>
 
+<!--
 <ul class="ul_two hid_ul">
-<!--<li id="scroll_down"><i class="fas fa-solid fa-download fa-2x"></i></li>-->
+<li id="scroll_down"><i class="fas fa-solid fa-download fa-2x"></i></li>
 <li id="open_clear_it"><i class="fas fa-solid fa-trash fa-2x"></i></li>
-<!--<li id="font_change" class="mob_hide_always"><i class="fas fa-solid fa-pen-nib fa-2x"></i></li>-->
-<!--<li id="font_small" class=""><i class="fas fa-solid fa-font fa-2x"></i></li>-->	
+<li id="font_change" class="mob_hide_always"><i class="fas fa-solid fa-pen-nib fa-2x"></i></li>
+<li id="font_small" class=""><i class="fas fa-solid fa-font fa-2x"></i></li>
 <li id="count_it" class="mob_hide_always"><i class="fas fa-solid fa-won-sign fa-2x"></i></li>
-<!--<li id="edit_mode" class="mob_hide_always blinking-set blinking light_hide"><i class="fas fa-solid fa-text-height fa-2x"></i></li>-->
+<li id="edit_mode" class="mob_hide_always blinking-set blinking light_hide"><i class="fas fa-solid fa-text-height fa-2x"></i></li>
 <li class="send_to hideable_icon hid_icon"><i class="fas fa-paper-plane fa-2x"></i></li>
 <li class="time_click mob_hide_always"><i class="fas fa-solid fa-clock fa-2x"></i></li>
 <li id="dwn-btn" class=""><i class="fas fa-solid fa-arrow-down fa-2x "></i></li>
 <li id="theme_change"><i class="fas fa-solid fa-palette fa-2x"></i></li>
-
-
 </ul>
+-->
 
 <ul class="sending">
 <input class="email_prompt" type="text" placeholder="daniel.reynolds7a_sendto@kindle.com" size="40">
 <li class="mail_to hideable_icon hid_icon mob_hide_always"><i class="fas fa-envelope fa-2x"></i></li>
 </ul>
-
-<ul>
+<!--
+<ul class="hider">
 <li id="show_hide_icons" class=""><i class="fas fa-solid fa-angle-down fa-3x"></i></li>
 </ul>
-
+-->
+<!--
 <ul class="palette">
 	<li class="color_changer mob_hide_always"><a class="charcoal" href="#">&nbsp;</a></li>
 	<li class="color_changer mob_hide_always"><a class="black" href="#">&nbsp;</a></li>
 	<li class="color_changer mob_hide_always"><a class="green" href="#">&nbsp;</a></li>
 	<li class="color_changer mob_hide_always"><a class="blue" href="#">&nbsp;</a></li>
-	<li class="color_changer mob_hide_always"><a class="white" href="#">&nbsp;</a></li>
-    
+	<li class="color_changer mob_hide_always"><a class="white" href="#">&nbsp;</a></li>    
 </ul>
+-->
 
 <div class="close_screen charcoal">
 
 <div class="close_it">
 	<i class="fas fa-times fa-1x"></i>
 </div>
+
 
 <div class="end to_be_hidden">
 	<p>Time!</p>	
@@ -733,24 +781,81 @@ img[alt*="000webhost"] {
 <script type="text/javascript" src="wordGenSimple.js"></script>
 <script type="text/javascript">
 
-	if ($("textarea").hasClass("lines")){
+/*
 
-		alert("Yis");
+window.addEventListener(
+  "contextmenu",
+  (event) => {
+    event.preventDefault();
+    var x = event.clientX;     // Get the horizontal coordinate
+	var y = event.clientY;     // Get the vertical coordinate
+	//var coor = "X coords: " + x + ", Y coords: " + y;
+    //...
+    $('.context_menu').css({"top": y, "left": x});
+    $('.context_menu').addClass('context_open');
+    $('textarea').blur();
+    //alert(coor);
+  },
+  false
+);
 
-	}
+*/
+
+window.addEventListener("dblclick", openContext);  
+
+function openContext() { 
+
+    var x = event.clientX;     // Get the horizontal coordinate
+	var y = event.clientY;     // Get the vertical coordinate
+	//var coor = "X coords: " + x + ", Y coords: " + y;
+    //...
+    $('.context_menu').css({"top": y, "left": x});
+    $('.context_menu').addClass('context_open');
+    $('textarea').blur();
+    //alert(coor);
+
+} 
+
+function hide_context(){
+
+$('.context_menu').css({"top": "-350px"});
+$('.context_menu').removeClass('context_open'); 
+
+}
+
+
+$("textarea").focus(function(){
+
+	hide_context();  
+
+});
+
+$("#close_context").click(function(){
+	
+	hide_context();  
+
+});
+
+var editmode = true;
 
 $(document).ready(function() {
-
-// Remove 000Webhost Image
-$("img").attr("src", "https://cdn.000webhost.com/000webhost/logo/footer-powered-by-000webhost-white2.png").hide();
-
-var editmode = false;
 
 if (editmode === true){
 
 	$(".Cloak").hide();
 	$("#bulb_change").show();
 }
+
+});
+
+$('body').click(function(event){    
+       if(event.target.id == "menu_content")
+          return;
+       //For descendants of menu_content being clicked, remove this check if you do not want to put constraint on descendants.
+       if($(event.target).closest('#menu_content').length)
+          return;             
+
+      //Do processing of click event here for every element except with id menu_content
 
 });
 
@@ -811,10 +916,6 @@ $('#edit_mode').on("click", function(){
 
 */
 
-var y = $(window).scrollTop();  //your current y position on the page
-$(window).scrollTop(y+150);
-
-//
 function hide_icons(){
 
 	$("ul.ul_two").removeClass('show_ul');
@@ -915,8 +1016,10 @@ function reset(){
 
 
 $("#open_clear_it").on('click', function() {
-    
-    $('.prompt_box').css("top","70px");
+
+    var x = event.clientX;     // Get the horizontal coordinate
+	var y = event.clientY;     // Get the vertical coordinate
+    $('.prompt_box').css({"top": y, "left": x});
    
 
 });
@@ -931,8 +1034,14 @@ $("#close_clear").on('click', function() {
 $("#clear_it").on('click', function() {
     
     //alert("1f1");
-    $("textarea").val('');
+    $("textarea").val('');   
     reset();
+
+    setTimeout(function(){ 
+
+	$(".title input").val('');	 
+
+	}, 300);
 
 
     $('.prompt_box').css("top","-215px");
@@ -1038,9 +1147,17 @@ document.querySelector(".submit_timer_number").addEventListener("click", functio
 
 });
 
-var minute = Math.floor(1000 * 60); 
+if (editmode === true){
+
+	var minute = 5000
+}
+
+else{
+
+	var minute = Math.floor(1000 * 60); 
 	// 60000
-//var minute = 5000
+
+}
 
 function CountDownTimeInit() {
 	var countdownFrom  = document.querySelector(".time").innerText;
@@ -1062,7 +1179,7 @@ function CountDownInit() {
 	//$('.close_screen').css("width","100%");
 	document.querySelector('.typewriter h1.dektop_title').innerText = 'Time is Up ... Click to return!';
 	document.querySelector('.typewriter h1.mobile_title').innerText = 'Time is Up!';
-	$('.Cloak_outer').show();
+	$('.Cloak').show();
 	$('.Cloak').css("opacity","1");
 	
 
