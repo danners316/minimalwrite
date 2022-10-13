@@ -201,20 +201,23 @@
 
 		.context_menu{
 			position: fixed;
-			top: -350px;
+			top: -450px;
 			transition: top, 0.5s;
 		}
 
 		ul.sending {
 		    position: absolute;
-		    top: -100px;
+		    top: -150px;
 		    right: 150px;
 		    transition: top, 0.5s;
 		    height: 50px;
-		    border: 2px solid crimson;
 		    margin: 0;
 		    padding: 10px;
+		    border: 2px solid #001919;
 		    border-radius: 10px;
+		    background-color: #000;
+		    height: 103px;
+		    width: 370px;
 		}
 
 		ul.sending.open {
@@ -222,11 +225,12 @@
 		}
 
 		ul.context_ul {
-		    margin: 0;
+		    margin: 1px;
 		    padding: 0;
+		    float: left;
 		}
 
-		ul.context_ul li {
+		ul.context_ul li, ul.sending li {
 		    display: block;
 		    padding: 10px;
 		    margin: 0;
@@ -239,20 +243,25 @@
 		    margin-bottom: 1px;
 		}
 
-		ul.context_ul li:hover
+		ul.sending li {
+			display: inline;
+			padding: 13px 10px;
+		}
+
+		ul.context_ul li:hover, ul.sending li:hover
 		{
 			background-color: #040720;
 			background-color: #001919;
 		}
 
 		input.email_prompt {
-		    padding: 12px 6px;
-		    border: 1px solid #fff;
-		    border-radius: 5px;
-		    position: relative;
-		    bottom: 13px;
-		    font-size: 16px;
-    		font-family: 'Roboto Mono',monospace;
+		    padding: 12px;
+		    border: 5px solid #001919;
+		    border-radius: 8px;
+		    font-size: 14px;
+		    font-family: 'Roboto Mono',monospace;
+		    display: block;
+		    margin-bottom: 10px;
 		}
 
 		.prompt_box {
@@ -288,7 +297,7 @@
 		.close_screen {
 		    width: 0;
 		    height: 100%;
-		    background-color: #212121;		    
+		    background-color: #040200;		    
 		    color: #fff;
 		    position: fixed;
 		    top: 0;
@@ -325,12 +334,16 @@
 		}
 
 		i.fas.fa-envelope.fa-2x {
-		    font-size: 3em;
-		    transition: color, 1s;
+		    position: relative;
+    		top: 3px;
 		}
 
-		i.fas.fa-envelope.fa-2x:hover {
-			color: crimson;
+		i.fas.fa-solid.fa-arrow-up.fa-2x {
+		    opacity: 1;
+		    color: crimson;
+		    position: relative;
+    		top: 3px;
+
 		}
 
     	.close_it{
@@ -609,7 +622,8 @@
 	}
 
 	.dark_theme .wrapper {
-    height: 100%;
+    height: 80%;
+    top: 40%;
 	}
 
 	.fa-angle-down {
@@ -633,11 +647,11 @@
 	}
 
 	.fa-2x{
-    font-size: 2.2em;
+    font-size: 1.5em;
 	}
 
 	.fa-3x{
-    font-size: 3.2em;
+    font-size: 2.5em;
 	}
 
 	ul {
@@ -663,6 +677,10 @@
 	.mob_hide_always, .dark_theme .mob_hide_always{
 		display:none;
 	}
+
+	.context_menu {
+    top: -380px;
+}
 
 
 }
@@ -709,10 +727,24 @@
 
 	<li id="close_context" alt="close" class=""><i class="fas fa-solid fa-angle-up fa-2x "></i></li>
 	<li id="open_clear_it"><i class="fas fa-solid fa-trash fa-2x"></i></li>
+
+	</ul>
+	<ul class="context_ul">
+
 	<li id="count_it" class=""><i class="fas fa-solid fa-equals fa-2x"></i></li>
 	<li class="time_click "><i class="fas fa-solid fa-clock fa-2x"></i></li>
+
+	</ul>
+	<ul class="context_ul">
+
 	<li id="dwn-btn" class=""><i class="fas fa-solid fa-arrow-down fa-2x "></i></li>
 	<li id="theme_change"><i class="fas fa-solid fa-palette fa-2x"></i></li>
+
+	</ul>
+	<ul class="context_ul">
+		
+	<li class="send_to hideable_icon hid_icon"><i class="fas fa-paper-plane fa-2x"></i></li>
+	<li id="font_change" class=""><i class="fas fa-solid fa-pen-nib fa-2x"></i></li>
 
 	</ul>
 
@@ -744,6 +776,7 @@
 <ul class="sending">
 <input class="email_prompt" type="text" placeholder="daniel.reynolds7a_sendto@kindle.com" size="40">
 <li class="mail_to hideable_icon hid_icon mob_hide_always"><i class="fas fa-envelope fa-2x"></i></li>
+<li class="close_context_mail" alt="close" class=""><i class="fas fa-solid fa-arrow-up fa-2x "></i></li>
 </ul>
 <!--
 <ul class="hider">
@@ -805,11 +838,50 @@ window.addEventListener("dblclick", openContext);
 
 function openContext() { 
 
+	//var screen_width = screen.width;
+	var window_width = window.innerWidth;
+	var window_height = window.innerHeight;
+	var max_width = window_width - 60;
+	var max_height = window_height - 120;
+	var max_height_2 = window_height - 450;
+    //alert(window_height + "," + max_height);
+
+    var y = event.clientY;     // Get the vertical coordinate
+
+    if (y > max_height){
+
+    y = max_height;
+
+    }
+    else{
+
+     y = event.clientY;
+
+    }
+
     var x = event.clientX;     // Get the horizontal coordinate
-	var y = event.clientY;     // Get the vertical coordinate
+    
+
+    if (x < max_width){
+    x = event.clientX;
+    }
+
+    else{
+    x = max_width;
+    if(y > max_height_2){
+
+    	y = max_height_2;
+
+    }
+
+    }
+
+    
+	
+	$('.context_menu').css({"top": y, "left": x});
 	//var coor = "X coords: " + x + ", Y coords: " + y;
     //...
-    $('.context_menu').css({"top": y, "left": x});
+    
     $('.context_menu').addClass('context_open');
     $('textarea').blur();
     //alert(coor);
@@ -818,8 +890,15 @@ function openContext() {
 
 function hide_context(){
 
-$('.context_menu').css({"top": "-350px"});
+$('.context_menu').css({"top": "-450px"});
 $('.context_menu').removeClass('context_open'); 
+
+
+
+		
+		$('ul.sending.open').css("top","-150px");
+		$('ul.sending.open').removeClass("open");
+
 
 }
 
@@ -836,7 +915,13 @@ $("#close_context").click(function(){
 
 });
 
-var editmode = false;
+$(".close_context_mail").click(function(){
+
+	$('ul.sending.open').css({"top": "-150px"});
+
+});
+
+var editmode = true;
 
 $(document).ready(function() {
 
@@ -1275,21 +1360,14 @@ else{
 
 $('.send_to').click(function(){
 
-	if ($('.sending').hasClass("open")){
-
-		$('.sending').removeClass("open");
-
-	}
-
-	else{
-		$('.sending').addClass("open");
-	}
-	
-
-	
+	$('.sending').addClass("open");
+	var x = event.clientX;     // Get the horizontal coordinate
+	var y = event.clientY;     // Get the vertical coordinate
+	$('ul.sending.open').css({"top": "20px", "right": "20px"});
 
 
 });
+
 
 $('.mail_to').click(function(){
 
