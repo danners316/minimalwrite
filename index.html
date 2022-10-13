@@ -1264,7 +1264,7 @@ function CountDownInit() {
 	//$('.close_screen').css("width","100%");
 	document.querySelector('.typewriter h1.dektop_title').innerText = 'Time is Up ... Click to return!';
 	document.querySelector('.typewriter h1.mobile_title').innerText = 'Time is Up!';
-	$('.Cloak').show();
+	$('.Cloak_outer').show();
 	$('.Cloak').css("opacity","1");
 	
 
@@ -1367,6 +1367,29 @@ $('.send_to').click(function(){
 
 
 });
+
+/*
+$('.send_to').click(function(){
+
+	if ($(this).hasClass("showing")){
+
+	$(this).removeClass("showing");
+	$('ul.sending.open').css("top","-150px");
+
+	}
+
+	else{
+
+	$(this).addClass("showing");
+	$('.sending').addClass("open");
+	var x = event.clientX;     // Get the horizontal coordinate
+	var y = event.clientY;     // Get the vertical coordinate
+	$('ul.sending.open').css({"top": "20px", "right": "20px"});
+
+	}
+
+});
+*/
 
 
 $('.mail_to').click(function(){
