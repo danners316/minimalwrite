@@ -225,8 +225,8 @@
 		    border: 2px solid #001919;
 		    border-radius: 10px;
 		    background-color: #000;
-		    height: 103px;
-		    width: 370px;
+		    height: 82px;
+		    width: 300px;
 		}
 
 		ul.sending.open {
@@ -253,8 +253,11 @@
 		}
 
 		ul.sending li {
-			display: inline;
-			padding: 13px 10px;
+			padding: 5px 10px;
+		}
+
+		ul.sending.open .fa-2x {
+		    font-size: 1.2em;
 		}
 
 		ul.context_ul li:hover, ul.sending li:hover
@@ -264,13 +267,14 @@
 		}
 
 		input.email_prompt {
-		    padding: 12px;
+		    padding: 6px;
 		    border: 5px solid #001919;
-		    border-radius: 8px;
+		    border-radius: 5px;
 		    font-size: 14px;
 		    font-family: 'Roboto Mono',monospace;
 		    display: block;
 		    margin-bottom: 10px;
+		    width: 95%;
 		}
 
 		.prompt_box {
@@ -366,11 +370,12 @@
     	.dark_theme .title input[type="text"], .dark_theme .title input[type="text"]:focus, .dark_theme .title input[type="text"]:focus-visible {
 		    border: none;
 		    outline: none;
-		    font-size:24px;
-			font-family: Mentimun;
-			font-family: Remington;
-			letter-spacing: 1px;
-			width: 900px;
+		    font-size: 18px;
+		    font-family: Mentimun;
+		    font-family: Remington;
+		    letter-spacing: 1.5px;
+		    width: 900px;
+		    text-transform: capitalize;
 		}
 
 		.title input[type="text"], .title input[type="text"]:focus, .title input[type="text"]:focus-visible {
@@ -388,6 +393,15 @@
 			top:50px;
 			left:45px;
 		}
+
+		/*lighmode title reveal 
+		
+		top: 15px;
+	    left: 50%;
+	    z-index: 99;
+	    transform: translate(-50%, -50%);
+
+		*/
 
 		input[type="number"] {
 		        padding: 40px;
@@ -785,7 +799,7 @@
 <ul class="sending">
 <input class="email_prompt" type="text" placeholder="daniel.reynolds7a_sendto@kindle.com" size="40">
 <li class="mail_to hideable_icon hid_icon"><i class="fas fa-envelope fa-2x"></i></li>
-<li class="close_context_mail" alt="close" class=""><i class="fas fa-solid fa-arrow-up fa-2x "></i></li>
+<!-- <li class="close_context_mail" alt="close" class=""><i class="fas fa-solid fa-arrow-up fa-2x "></i></li>-->
 </ul>
 <!--
 <ul class="hider">
@@ -822,6 +836,42 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript" src="wordGenSimple.js"></script>
 <script type="text/javascript">
+
+	/* Cookies */
+
+function setCookie(cname, cvalue, exdays) {
+  const d = new Date();
+  d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+  let expires = "expires="+d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+  let name = cname + "=";
+  let ca = document.cookie.split(';');
+  for(let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+function checkCookie() {
+  let user = getCookie("username");
+  if (user != "") {
+    alert("Welcome again " + user);
+  } else {
+    user = prompt("Please enter your name:", "");
+    if (user != "" && user != null) {
+      setCookie("username", user, 365);
+    }
+  }
+}
 
 /*
 

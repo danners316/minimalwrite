@@ -75,6 +75,12 @@ var rand = Math.random() * NauticalEndingsNum;
 rand = Math.floor(rand);
 var NauticalEnding = NauticalEndings[rand];
 
+const NauticalAdditions = ["death revealed himself then, and he smiled.","they had no more fight in their bones.","as the began to fall the grey clouds fell away","what was it worth  said one to the other","a steady rain began to fall and the sky opened up as they watched on","the sound of a thud came as the first fell","they had not eaten it seemed in weeks"]
+var NauticalAdditionsNum = NauticalAdditions.length;
+var rand = Math.random() * NauticalAdditionsNum;
+rand = Math.floor(rand);
+var NauticalAddition = NauticalAdditions[rand];
+
 const articles = ["a", "the"]
 var articlesNum = articles.length;
 var rand = Math.random() * articlesNum;
@@ -129,7 +135,7 @@ var rand = Math.random() * vibesNum;
 rand = Math.floor(rand);
 var vibe = vibes[rand];
 
-const objectHaves = ["are you not dead yet","have you a shilling","have you a penny","have you a bit of food","say a prayer for me","have you a good prayer for me","has your time come","have you the time","how long has it been"]
+const objectHaves = ["are you not dead yet","have you a shilling","have you a penny","have you a bit of food","say a prayer for me","have you a good prayer for me","has your time come","have you the time","how long has it been","where is your god now","has he forsaken us","a lit candle is like a fart in the ocean", "pray for me"]
 var objectHavesNum = objectHaves.length;
 var rand = Math.random() * objectHavesNum;
 rand = Math.floor(rand);
@@ -147,12 +153,24 @@ var rand = Math.random() * verbQuestionsNum;
 rand = Math.floor(rand);
 var verbQuestion = verbQuestions[rand];
 
-
 const cigaretteEnds = ["as his smoke rose", "as he inhaled", "as he exhaled", "as he pulled on the cigarette", "as the light from cigarette drew on the darkness", "as he blessed himself"]
 var cigaretteEndsNum = cigaretteEnds.length;
 var rand = Math.random() * cigaretteEndsNum;
 rand = Math.floor(rand);
 var cigaretteEnd = cigaretteEnds[rand];
+
+const bladeEnds = ["it's shiny surface reflected the evil inside him", "in it's silver tongue he saw evil", "he looked at the reflection of the dead man", "he wiped it clean with the inside of his jacket", "it shivered in his hand", "he blessed himself with its sharpened end"]
+var bladeEndsNum = bladeEnds.length;
+var rand = Math.random() * bladeEndsNum;
+rand = Math.floor(rand);
+var bladeEnd = bladeEnds[rand];
+
+const deathEnds = ["it's ragged clothes, it's crusty beard. it continued to follow him", "in it's hollow footsteps he heard something", "it folowed him still", "would it grow tired", "it's restless hum and the loud breathing of it haunting his every step.", "he knew it was near"]
+var deathEndsNum = deathEnds.length;
+var rand = Math.random() * deathEndsNum;
+rand = Math.floor(rand);
+var deathEnd = deathEnds[rand];
+
 
 const eyesDescs = ["brilliant", "deep", "caverous", "hollow", "awful", "sinful", "narrow", "wretched", "darkened", "shiny", "bright", "muddy"]
 var eyesDescsNum = eyesDescs.length;
@@ -168,19 +186,33 @@ var eyesColor = eyesColors[rand];
 
 var sentence10 = article + " " + subjectHe + " " + verb + " " +  preposition + " " +  article + " " +  toObject + " " +  conjunction + " " +  endAction + ". ";
 
-if (endAction === "sat beside the old woman"){
+if (endAction === "sat beside the old woman" || endAction === "gestured to the priest"){
 
 	var sentence20 = objectHave + ", " + pronoun + " " + verbQuestion + ". ";
 
 }
 
-else if (endAction === "lit a cigarette"){
+else if (endAction === "lit a cigarette" || endAction === "lit a candle for the dead"){
 
 	var sentence20 = question + " " + vibe + ", " + pronoun + " " + verbQuestion + ", " + cigaretteEnd + ". ";
 
 }
 
-else if (endAction === "gazed at the tall figure before him" || endAction === "observed the silence there" || endAction === "glanced around at his company"){
+else if (endAction === "readied his blade"){
+
+	var sentence20 = question + " " + vibe + ", " + pronoun + " said. " + bladeEnd + ". ";
+
+}
+
+else if (endAction === "thought of death"){
+
+	var sentence20 = question + " " + vibe + ", " + pronoun + " said. " + deathEnd + ". ";
+
+}
+
+
+
+else if (endAction === "gazed at the tall figure before him" || endAction === "observed the silence there" || endAction === "glanced around at his company" || endAction === "shivered from the cold"){
 
 	var sentence20 = "he had " + eyesDesc + " " + eyesColor + " eyes."
 
@@ -198,7 +230,19 @@ else
 
 
 //}
+
+
+if ( NauticalEnding === "they each relinqueshed their grip on their weapon" || NauticalEnding === "they resigned themselves to their fate" || NauticalEnding === "they drew a last breath" || NauticalEnding === "they drew up their weapons"){
+
+	var sentence9 = NauticalStance + " " + NauticalEmotion + " " + NauticalEnding + ". " + NauticalAddition;
+}
+
+else{
+
+}
+
 var sentence9 = NauticalStance + " " + NauticalEmotion + " " + NauticalEnding + ".";
+
 var sentence11 = sentence10 + sentence20; 
 
 
