@@ -19,6 +19,15 @@
 		  color: crimson; /* Gecko Browsers */
 		}
 
+		.title input[type="text"]::selection, .title input[type="text"]:focus::selection, .title input[type="text"]:focus-visible::selection {
+		  background: transparent;
+		  color: #fff; /* WebKit/Blink Browsers */
+		}
+		.title input[type="text"]::selection, .title input[type="text"]:focus::selection, .title input[type="text"]:focus-visible::-moz-selection {
+		  background: transparent;
+		  color: #fff; /* Gecko Browsers */
+		}
+
 		@font-face {
 		  font-family: Mentimun;
 		  src: url(fonts/Mentimun.ttf);
@@ -834,7 +843,15 @@ window.addEventListener(
 
 */
 
-window.addEventListener("dblclick", openContext);  
+//window.addEventListener("dblclick", openContext); 
+
+window.addEventListener('click', function (evt) {
+    if (evt.detail === 3) { 
+
+    	openContext();
+
+        }
+});
 
 function openContext() { 
 
