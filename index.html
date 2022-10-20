@@ -198,7 +198,6 @@
 
 		li{
 			display: inline;
-			margin-left:8px;
 			cursor: pointer;
 		}
 
@@ -268,18 +267,19 @@
 		}
 
 		.prompt_box {
-		    width: 200px;
-		    height: 200px;
-		    border: 5px solid #000;
-		    border-radius: 10px;
-		    position: fixed;
-		    top: -215px;
-		    right: 150px;
-		    transition: top, 0.7s;
-		    font-family: Mentimun;
-		    background-color: crimson;
-		    opacity: 0.9;
-	    	color: #000;
+		        width: 130px;
+			    height: 130px;
+			    border: 5px solid #000;
+			    border-radius: 10px;
+			    position: fixed;
+			    top: -215px;
+			    right: 150px;
+			    transition: top, 0.7s;
+			    font-family: Mentimun;
+			    background-color: crimson;
+			    opacity: 0.9;
+			    font-size: 14px;
+			    color: #000;
 		}
 
 		.prompt_box.show_prompt {
@@ -290,7 +290,8 @@
 		    
 		    letter-spacing: 0.1em;
 		    text-align: center;
-		    margin-top: 50px;
+		    margin-top: 15px;
+		    line-height: 25px;
 		}
 
 		.prompt_box ul{
@@ -783,7 +784,7 @@
 </div>
 
 <div class="prompt_box">
-	<p>Delete Text?</p>
+	<p>Delete<br />Text?</p>
 	<ul>
 		<li id="clear_it">Yes</li>
 		<li id="close_clear">No</li>
