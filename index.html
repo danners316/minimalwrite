@@ -435,7 +435,7 @@
 		        padding: 40px;
 			    border: 5px solid #001919;
 			    border-radius: 70px;
-			    font-size: 33px;
+			    font-size: 25px;
 			    font-family: Mentimun;
 			    width: 45px;
 			    text-align: center;
@@ -894,6 +894,17 @@ window.addEventListener(
 
 //window.addEventListener("dblclick", openContext); 
 
+(function($) {
+    $.fn.focusToEnd = function() {
+        return this.each(function() {
+            var v = $(this).val();
+            $(this).focus().val("").val(v);
+        });
+    };
+})(jQuery);
+
+$("#MyTextArea").focusToEnd();
+
 window.addEventListener('click', function (evt) {
     if (evt.detail === 3) { 
 
@@ -977,6 +988,21 @@ $("textarea").focus(function(){
 	hide_context();  
 
 });
+
+$("textarea").click(function(){
+
+	if ($(this).hasClass('dark_theme')){
+
+		$(this).focusToEnd();
+		$("textarea").blur();
+		$("textarea").focus();
+
+	}
+	
+
+});
+
+
 
 $("#close_context").click(function(){
 	
