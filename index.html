@@ -41,7 +41,12 @@
 
 		@font-face {
 		  font-family: Antipasto;
-		  src: url(fonts/Antipasto.ttf);
+		  src: url(fonts/Antipasto.otf);
+		}	
+
+		@font-face {
+		  font-family: King;
+		  src: url(fonts/King.ttf);
 		}		
 
 		/*
@@ -65,7 +70,7 @@
 		}
 
 		.dark_theme .wrapper{
-		height:60px;
+		height:105px;
 		}
 
 		.wrapper.editmode{
@@ -112,6 +117,10 @@
 		    /* transition: box-shadow, 0.5s; */
 		}
 
+		textarea.dark_theme {
+			font-family: King;
+		}
+
 		textarea.editmode {
 		    overflow-y: inherit;
 		    font-size: 16px;
@@ -126,11 +135,16 @@
 		    width: 80%;
 		}
 
-		.charcoal{background-color:#000000;}
-		.green{background-color:#001919;}
-		.burgundy{background-color: #820024;}
-		.black{background-color: #212121;}
-		.blue{background-color: #040720}
+		.dark_theme .font_2.alternate {
+		    background-color: #fff;
+		    color: #000;
+		}
+
+		.charcoal{background-color:#000000;color:#fff;}
+		.green{background-color:#001919;color:#fff;}
+		.burgundy{background-color: #820024;color:#fff;}
+		.black{background-color: #212121;color:#fff;}
+		.blue{background-color: #040720;color:#fff;}
 		.white{background-color: #fff; color: #212121;}
 
 		textarea.dark_theme.charcoal{background-color:#000000;}
@@ -152,7 +166,13 @@
 		}
 
 		.lines.small {
-		    background-image: url(linesb-30.png), url(paper.png);
+		    /* background-image: url(linesb-30.png), url(paper.png);*/
+		    background-image: url(linesb-30.png);
+		}
+
+		.lines.small.alternate {
+		    background-image: url(linesb-30.png);
+		    color: #fff;
 		}
 
 		textarea:focus-visible {
@@ -271,19 +291,20 @@
 		}
 
 		.prompt_box {
-		        width: 150px;
-			    height: 150px;
-			    border: 5px solid #000;
-			    border-radius: 10px;
-			    position: fixed;
-			    top: -215px;
-			    right: 150px;
-			    transition: top, 0.7s;
-			    font-family: Mentimun;
-			    background-color: crimson;
-			    opacity: 0.9;
-			    font-size: 15px;
-			    color: #000;
+		    width: 210px;
+		    height: 150px;
+		    border: 2px solid crimson;
+		    border-radius: 10px;
+		    position: fixed;
+		    top: -215px;
+		    right: 150px;
+		    transition: top, 0.7s;
+		    /* font-family: 'Notepad'; */
+		    background-color: #001919;
+		    opacity: 0.9;
+		    font-size: 19px;
+		    color: #fff;
+		    font-family: School;
 		}
 
 		.prompt_box.show_prompt {
@@ -365,7 +386,7 @@
 		    outline: none;
 		    font-size: 18px;
 		    font-family: Mentimun;
-		    font-family: Remington;
+		    font-family: Notepad;
 		    letter-spacing: 1.5px;
 		    width: 900px;
 		    text-transform: capitalize;
@@ -526,7 +547,7 @@
     blink-caret .75s step-end infinite;
 }
 
-.dark_theme ul.palette {
+ul.palette {
     position: fixed;
     left: 10px;
     bottom: 10px;
@@ -535,15 +556,15 @@
     transition: left, 0.5s;
 }
 
-.dark_theme ul.palette.palette_hidden{
+ul.palette.palette_hidden{
 	left: -140px;
 }
 
-.dark_theme .palette li {
+.palette li {
     margin: 0;
 }
 
-.dark_theme .color_changer a {
+.color_changer a {
     padding: 2px 8px;
     text-decoration: none;
 }
@@ -770,6 +791,12 @@
 	<li id="theme_change"><i class="fas fa-solid fa-palette fa-2x"></i></li>
 
 	</ul>
+	<ul class="context_ul">
+		
+	<li id="alt-color"><i class="fas fa-brush fa-2x"></i></li>
+	<li id="font_change" class=""><i class="fas fa-solid fa-pen-nib fa-2x"></i></li>
+
+	</ul>
 	<!--
 	<ul class="context_ul">
 		
@@ -814,15 +841,15 @@
 <li id="show_hide_icons" class=""><i class="fas fa-solid fa-angle-down fa-3x"></i></li>
 </ul>
 -->
-<!--
+
 <ul class="palette">
 	<li class="color_changer mob_hide_always"><a class="charcoal" href="#">&nbsp;</a></li>
 	<li class="color_changer mob_hide_always"><a class="black" href="#">&nbsp;</a></li>
 	<li class="color_changer mob_hide_always"><a class="green" href="#">&nbsp;</a></li>
-	<li class="color_changer mob_hide_always"><a class="blue" href="#">&nbsp;</a></li>
+	<!-- <li class="color_changer mob_hide_always"><a class="blue" href="#">&nbsp;</a></li> -->
 	<li class="color_changer mob_hide_always"><a class="white" href="#">&nbsp;</a></li>    
 </ul>
--->
+
 
 <div class="close_screen charcoal">
 
@@ -935,8 +962,10 @@ $('.context_menu').removeClass('context_open');
 
 
 		
-		$('ul.sending.open').css("top","-150px");
-		$('ul.sending.open').removeClass("open");
+		//$('ul.sending.open').css("top","-150px");
+		//$('ul.sending.open').removeClass("open");
+		$('ul.palette').addClass('palette_hidden');
+		$('#alt-color').removeClass('open');
 
 
 }
@@ -1012,6 +1041,28 @@ $('li.color_changer a').click(function(){
 
 });
 
+$('#alt-color').removeClass('open');
+
+$('#alt-color').click(function(){
+
+	if ($(this).hasClass('open')){
+
+		$(this).removeClass('open');
+		$('ul.palette').addClass('palette_hidden');
+
+	}
+
+	else{
+
+		$(this).addClass('open')
+		$('ul.palette').removeClass('palette_hidden');
+
+	}
+
+	
+
+});
+
 /*
 $('#scroll_down').on("click", function(){
 
@@ -1047,7 +1098,7 @@ function hide_icons(){
 	$("#show_hide_icons i").css("transform","rotate(270deg)");
 	$('#show_hide_icons').addClass('icons_hid');
 
-	$('ul.palette').addClass('palette_hidden')
+	$('ul.palette').addClass('palette_hidden');
 }
 
 function show_icons(){
@@ -1058,7 +1109,7 @@ function show_icons(){
 	$("#show_hide_icons i").css("transform","rotate(90deg)");
 	$("#show_hide_icons").removeClass('icons_hid');
 
-	$('ul.palette').removeClass('palette_hidden')	
+	$('ul.palette').removeClass('palette_hidden');	
 
 }
 
@@ -1339,7 +1390,7 @@ inittDarkTheme();
 
 $('#theme_change').click(function(){
 
-	$('ul.palette').toggle();
+	//$('ul.palette').toggle();
 
 if ($('body').hasClass('dark_theme')){
 
