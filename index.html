@@ -41,7 +41,7 @@
 
 		@font-face {
 		  font-family: Antipasto;
-		  src: url(fonts/Antipasto.otf);
+		  src: url(fonts/Antipasto.TTF);
 		}	
 
 		@font-face {
@@ -70,7 +70,7 @@
 		}
 
 		.dark_theme .wrapper{
-		height:105px;
+		height:525px;
 		}
 
 		.wrapper.editmode{
@@ -100,7 +100,7 @@
 
 		textarea{
 			width: 100%;
-		    font-family: Antipasto;
+		    font-family: Notepad;
 		    /*font-family: 'Roboto Mono',monospace;*/		    
 		    font-size: 18px;
 		    text-align: left;
@@ -165,7 +165,7 @@
 		textarea.small{
 			line-height: 30px;
 		    padding-top: 34px;
-		    font-size: 16px;
+		    font-size: 14.5px;
 		}
 
 		.lines.small {
@@ -896,17 +896,6 @@ window.addEventListener(
 
 //window.addEventListener("dblclick", openContext); 
 
-(function($) {
-    $.fn.focusToEnd = function() {
-        return this.each(function() {
-            var v = $(this).val();
-            $(this).focus().val("").val(v);
-        });
-    };
-})(jQuery);
-
-$("#MyTextArea").focusToEnd();
-
 window.addEventListener('click', function (evt) {
     if (evt.detail === 3) { 
 
@@ -991,6 +980,21 @@ $("textarea").focus(function(){
 
 });
 
+
+
+/*
+(function($) {
+    $.fn.focusToEnd = function() {
+        return this.each(function() {
+            var v = $(this).val();
+            $(this).focus().val("").val(v);
+        });
+    };
+})(jQuery);
+
+$("#MyTextArea").focusToEnd();
+
+
 $("textarea").click(function(){
 
 	if ($(this).hasClass('dark_theme')){
@@ -1003,6 +1007,8 @@ $("textarea").click(function(){
 	
 
 });
+
+*/
 
 
 
